@@ -1,0 +1,79 @@
+Docker Install
+Download docker and follow the instructions. Restarting the computer will be necessary
+Use “wsl --install Ubuntu” in a Powershell to install Wsl
+Start up Docker
+
+
+Use React:
+
+
+Same Command: npx create-react-app <your_app_name>
+
+
+Create “Dockerfile” in your project:
+FROM node:alpine
+# set the working direction
+WORKDIR /app
+
+
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+
+
+# install app dependencies
+COPY package.json ./
+
+
+COPY package-lock.json ./
+
+
+RUN npm install
+# add app
+COPY . ./
+
+
+# start app
+CMD ["npm", "start"]
+.
+Add .dockerignore file:
+node_modules
+npm-debug.log
+build
+.dockerignore
+**/.git
+**/.DS_Store
+**/node_modules
+.
+Create Container: docker build -t ps-container:dev
+Run Container:
+docker run -it --rm \
+2-v ${PWD}:/app \
+3-v /app/node_modules \
+4-p 3001:3000 \
+5-e CHOKIDAR_USEPOLLING=true \
+6ps-container:dev
+
+
+
+
+Download ReactJS and write Helloworld
+Install NodeJS and nbm on https://nodejs.org/en/
+Use “npx create-react-app my-app” to create your first react app
+Helloworld Code:
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('root')
+);
+Start your App: npm start. This will start the webserver.
+
+Heroku (Webapp Hosting directly linked to your git repository)
+Register on heroku.com
+Download the Heroku CLI (https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
+Use “heroku login” to login
+Clone our git (git clone https://github.com/chunqinh/Parking-Space.git)
+Use “heroku create NAME” to create the heroku app based up on your repo
+Deploy your code: “git push heroku main”
+Now you should be able to open the app: “heroku open”
+Use a Procfile, a text file in the root directory of your application, to explicitly declare what command should be executed to start your app. The Procfile in the example app you deployed looks like this: web: npm start
+This declares a single process type, web, and the command needed to run it. The name web is important here. It declares that this process type will be attached to the HTTP routing stack of Heroku, and receive web traffic when deployed. This command will use the start script that is specified in the package.json.
+.
