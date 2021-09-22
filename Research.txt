@@ -76,3 +76,4 @@ Deploy your code: “git push heroku main”
 Now you should be able to open the app: “heroku open”
 Use a Procfile, a text file in the root directory of your application, to explicitly declare what command should be executed to start your app. The Procfile in the example app you deployed looks like this: web: npm start
 This declares a single process type, web, and the command needed to run it. The name web is important here. It declares that this process type will be attached to the HTTP routing stack of Heroku, and receive web traffic when deployed. This command will use the start script that is specified in the package.json.
+.
