@@ -1,0 +1,48 @@
+CSE 442 ParkApp Project
+
+To be able to store and use data retrieved from the users of this app, we will be using MongoDB as our database. It stores the data somewhat similar to a JSON object, like this:
+
+To initialize a database using MongoDB, first, we have to download MongoDB on our system. We can always use MongoDB Atlas, however since this project will run across the semester, it’s preferred to download the desktop app. 
+
+Here’s a link to it (for windows): https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#download-the-installer
+
+The above link basically is a step-to-step process to install both the MongoDB binaries as well as the default configuration file <install directory>\bin\mongod.cfg on the system.
+
+However, you should also go to the link below to install MongoDB Shell:
+https://docs.mongodb.com/mongodb-shell/install/
+
+After installing it you have to connect to a deployment/cluster using the MongoDB Compass app. However, you first have to create an account on MongoDB Atlas so that you can create a cluster for your app. Create an account using the link below:
+
+https://www.mongodb.com/cloud/atlas/lp/general/try?utm_source=compass&utm_medium=product
+
+After you create an account there will be an option to create a database. After clicking it you will be redirected to a page where it will ask for the specifications of the cluster (Click SHARED tab). Default settings are fine. Click create cluster. 
+
+Give 1-3 minutes and then click Connect to MongoDB Compass. After clicking it there will be a connection string. Copy it and paste it into your MongoDB Compass App. And then you will have your cluster on your app and can see the database in the collection tab.
+
+Docker and MongoDB link up:
+https://hub.docker.com/_/mongo
+https://www.bmc.com/blogs/mongodb-docker-container/
+https://www.mongodb.com/compatibility/docker
+https://cse312.com/static_files/slides/4_3_Databases.pdf
+
+
+Create a database in MongoDB:
+https://www.tutorialspoint.com/mongodb/mongodb_create_database.htm
+https://www.mongodb.com/basics/create-database
+https://www.bmc.com/blogs/mongodb-create-database/
+
+Creating database using Node.js:
+https://www.pabbly.com/tutorials/create-database-in-mongodb-using-node-js/
+https://www.mongodb.com/nodejs-database
+
+Creating database using pymongo:
+https://pymongo.readthedocs.io/en/stable/
+https://www.w3schools.com/python/python_mongodb_create_db.asp
+
+
+Installing pymongo and using it for Python Language (if we are using python):
+https://pymongo.readthedocs.io/en/stable/installation.html
+https://pymongo.readthedocs.io/en/stable/tutorial.html
+
+Sample program using pymongo for MongoDB:
+https://replit.com/@PrasoonNaithan1/InvolvedBeautifulColdfusion#main.py
