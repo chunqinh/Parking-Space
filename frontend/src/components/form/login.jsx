@@ -4,16 +4,16 @@ function LoginForm(){
     return(
         <form className="login-form">
             <div>
-                <h6>USERNAME:</h6>
+                <h6 className="labels">USERNAME:</h6>
                 <input type={"text"}/>
             </div>
             <div>
-                <h6>PASSWORD:</h6>
+                <h6 className="labels">PASSWORD:</h6>
                 <input type={"password"}/>
             </div>
-            <div>
-                <button type={"submit"}> LOGIN </button>
-                <a> Forget your password? </a>
+            <div style={{display:'flex',flexDirection:'column', marginTop:'24px', alignItems:'center'}}>
+                <button type={"submit"} className="login-button"> LOGIN </button>
+                <a className="links"> Forget your password? </a>
             </div>
         </form>
     )

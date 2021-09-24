@@ -1,0 +1,32 @@
+.menu-main-div{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    width:100%;
+    top:0;
+    left:0;
+    padding:12px 0;
+    background-color: white;
+}
+
+.logo{
+    flex:1;
+    padding-left: 24px;
+}
+
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 24px;
+}
+
+.menu-links{
+    text-transform: uppercase;
+    padding: 0 12px;
+}
+
+.mobile{
+    display: none;
+}
+

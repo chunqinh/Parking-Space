@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './static/index.css';
 import './static/form.css'
+import './static/text.css'
+import './static/navbar.css'
 import App from './App';
 
 ReactDOM.render(

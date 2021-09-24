@@ -14,19 +14,21 @@ function Navigation(){
     const showSidebar = () => setSidebar(!sidebar)
 
     return(
-        <div>
-            <div><h3>PARKAPP</h3></div>
-            <div className="menu">
-                <Link to="/" className="page-links">Home</Link>
-                <Link to="/sign-in" className="page-links">LOGIN</Link>
-                <Link to="/sign-up" className="page-links">SIGN UP</Link>
+        <div className="menu-main-div">
+            <div className="logo">
+                <h3 className="heading">PARKAPP</h3>
             </div>
-            <div className="hamburger">
-                <img className="hamburger-icon" src={sidebar ? closeMenu : mobileMenu} onClick={showSidebar} />
-                <div className={sidebar ?  "hamburger-menu active" : "hamburger-menu"} onClick={showSidebar}>
-                    <Link to="/" className="page-links">Home</Link>
-                    <Link to="/sign-in" className="page-links">LOGIN</Link>
-                    <Link to="/sign-up" className="page-links">SIGN UP</Link>
+            <div className="menu">
+                <Link to="/" className="menu-links">Home</Link>
+                <Link to="/sign-in" className="menu-links">LOGIN</Link>
+                <Link to="/sign-up" className="menu-links">SIGN UP</Link>
+            </div>
+            <div className="mobile">
+                <img className="mobile-icon" src={sidebar ? closeMenu : mobileMenu} onClick={showSidebar} />
+                <div className={sidebar ?  "mobile-menu active" : "mobile-menu"} onClick={showSidebar}>
+                    <Link to="/" className="mobile-links">Home</Link>
+                    <Link to="/sign-in" className="mobile-links">LOGIN</Link>
+                    <Link to="/sign-up" className="mobile-links">SIGN UP</Link>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ import LoginForm from "../form/login";
 function Login(){
     return(
         <div>
-            <Container>
+            <Container className="single-height-pages">
                 <div style={{display:'flex'}}>
                     <div>
                         <LoginForm/>

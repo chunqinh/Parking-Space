@@ -2,3 +2,20 @@
     font-family: 'Staatliches', cursive;
     font-size: 48px;
 }
+
+.heading{
+    font-family: 'Staatliches', cursive;
+    font-size: 36px;
+    margin-block-end: unset;
+    margin-block-start: unset;
+    font-weight: normal;
+}
+
+.labels{
+    font-family: 'Staatliches', cursive;
+    font-size:36px;
+    padding:12px 0;
+    margin-block-end: unset;
+    margin-block-start: unset;
+    font-weight: normal;
+}
