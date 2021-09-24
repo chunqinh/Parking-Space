@@ -16,4 +16,30 @@ code {
   display: grid !important;
   place-content: center;
   place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.single-height-blob{
+  margin:0 24px;
+}
+
+.login{
+  display:flex;
+  align-items:center;
+  width:1200px;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.absolute-blob{
+  position: absolute;
+  top:20px;
+  right:0px;
+  width:400px;
+  z-index: -99;
+}
+
+a{
+  text-decoration: none;
 }
