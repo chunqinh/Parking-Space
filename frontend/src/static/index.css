@@ -34,10 +34,25 @@ code {
 
 .absolute-blob{
   position: absolute;
-  top:20px;
+  top:100px;
   right:0px;
   width:400px;
   z-index: -99;
+}
+
+.absolute-blob2 {
+  position:absolute;
+  top:50px;
+  right:400px;
+  width:200px;
+  z-index:-99;
+}
+.absolute-blob3 {
+  position:absolute;
+  top:50px;
+  right:200px;
+  width:150px;
+  z-index:-99;
 }
 
 a{
