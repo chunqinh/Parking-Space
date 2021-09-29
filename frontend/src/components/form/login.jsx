@@ -1,18 +1,11 @@
-import React from 'react';
-// import IconButton from "@material-ui/core/IconButton";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import Visibility from "@material-ui/icons/Visibility";
-// import InputAdornment from "@material-ui/core/InputAdornment";
-// import VisibilityOff from "@material-ui/icons/VisibilityOff";
-// import Input from "@material-ui/core/Input";
+import React, {useState} from 'react';
+import hide from '../icons/close_black_24dp.svg'
+import show from '../icons/menu_black_24dp.svg'
 
-let showPassword = false;
-function handleShowPassword(){
-    showPassword = !showPassword;
-}
 function LoginForm(){
 
-
+    const [password, setPassword] = useState(false);
+    const showPassword = () => setPassword(!password);
     return(
         <form className="login-form">
             <div>
@@ -21,7 +14,10 @@ function LoginForm(){
             </div>
             <div>
                 <h6 className="labels">PASSWORD:</h6>
-                <input type={showPassword ? "text":"password"}/>
+                <div>
+                    <input type={password ? "text":"password"}/>
+                    {password ? <img src={hide} onClick={showPassword}/> : <img src={show} onClick={showPassword}/>}
+                </div>
             </div>
             <div style={{display:'flex',flexDirection:'column', marginTop:'24px', alignItems:'center'}}>
                 <button type={"submit"} className="login-button"> LOGIN </button>
