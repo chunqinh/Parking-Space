@@ -4,7 +4,7 @@ ENV HOME /root
 
 WORKDIR /root
 
-COPY package.json .
+COPY package*.json /.
 
 RUN npm install
 
