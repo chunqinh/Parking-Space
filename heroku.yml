@@ -4,5 +4,5 @@
 #     as: DATABASE
 build:
   docker:
-    web: Dockerfile
+    web: frontend\Dockerfile
     worker: worker/Dockerfile
