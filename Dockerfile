@@ -18,7 +18,7 @@ WORKDIR /root/frontend
 RUN npm install
 # Allow port 8000 to be accessed
 # from outside the container
-EXPOSE 8000
+EXPOSE 3000
 
 
 # Run the app
