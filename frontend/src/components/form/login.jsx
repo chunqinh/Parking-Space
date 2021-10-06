@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import hide from '../icons/close_black_24dp.svg'
-import show from '../icons/menu_black_24dp.svg'
+import hide from '../icons/visibility_off_black_24dp.svg'
+import show from '../icons/visibility_black_24dp.svg'
 
 function LoginForm(){
 
@@ -16,12 +16,12 @@ function LoginForm(){
                 <h6 className="labels">PASSWORD:</h6>
                 <div>
                     <input type={password ? "text":"password"}/>
-                    {password ? <img src={hide} onClick={showPassword}/> : <img src={show} onClick={showPassword}/>}
+                    {password ? <img src={hide} className="password-hide-show" onClick={showPassword}/> : <img src={show} className="password-hide-show" onClick={showPassword}/>}
                 </div>
             </div>
             <div style={{display:'flex',flexDirection:'column', marginTop:'24px', alignItems:'center'}}>
                 <button type={"submit"} className="login-button"> LOGIN </button>
-                <a className="links"> Forget your password? </a>
+                <a href={"/change-pw"} className="links"> Forget your password? </a>
             </div>
         </form>
     )

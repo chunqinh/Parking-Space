@@ -37,3 +37,9 @@ button[type='submit']{
     text-decoration: underline;
     cursor: pointer;
 }
+
+.password-hide-show{
+    width:35px;
+    padding:6px;
+    transform: translateY(15px);
+}

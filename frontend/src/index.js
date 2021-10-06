@@ -4,6 +4,7 @@ import './static/index.css';
 import './static/form.css'
 import './static/text.css'
 import './static/navbar.css'
+import './static/time.css'
 import App from './App';
 
 ReactDOM.render(
