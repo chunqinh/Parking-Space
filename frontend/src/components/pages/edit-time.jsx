@@ -2,12 +2,10 @@ import React, {useState} from "react";
 
 function EditTime(){
 
-    let [minuteOnes, setMinuteOnes] = useState(0);
-    let [minuteTens, setMinuteTens] = useState(0);
-    let [hoursOnes, setHourOnes] = useState(0);
-    let [hoursTens, setHourTens] = useState(0);
-
-    let hours = 12;
+    let [minuteOnes, setMinuteOnes] = useState(9);
+    let [minuteTens, setMinuteTens] = useState(5);
+    let [hoursOnes, setHourOnes] = useState(2);
+    let [hoursTens, setHourTens] = useState(1);
 
    const addMin = () => {
         if (minuteOnes < 9){
@@ -38,6 +36,26 @@ function EditTime(){
         }
     }
 
+    const subtractHours = () => {
+       if( hoursOnes === 0 && hoursTens === 1){
+           setHourOnes(hoursOnes = 9);
+           setHourTens(hoursTens = 0);
+       }
+       else if(hoursOnes > 0){
+           setHourOnes(hoursOnes-=1);
+       }
+    }
+
+    const subtractMinutes = () => {
+       if( minuteOnes === 0 && minuteTens !== 0){
+           setMinuteOnes(minuteOnes = 9);
+           setMinuteTens( minuteTens -= 1);
+       }
+       else if(minuteOnes >= 1){
+           setMinuteOnes(minuteOnes-=1);
+       }
+    }
+
     return(
         <div className="single-height-pages">
             <div className="edit-time">
@@ -49,17 +67,19 @@ function EditTime(){
                     <button className="edit-time-buttons"> ADD 1 HOUR </button>
                     <button className="edit-time-buttons"> ADD 2 HOURS </button>
                 </div>
-                <div className="row" style={{marginTop:'48px'}}>
-                    <div style={{display:'flex',flexDirection:'column', alignItems:'center', marginRight:'24px'}}>
+                <div className="row" style={{marginTop:'24px', width:'800px', alignItems:'center'}}>
+                    <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
                         <button className="edit-time-buttons add" onClick={addHours}> + </button>
-                        <h1 className="super-heading time">{hoursTens} {hoursOnes} :</h1>
-                        <button className="edit-time-buttons add"> - </button>
+                        <h1 className="super-heading time">{hoursTens} {hoursOnes} </h1>
+                        <button className="edit-time-buttons add" onClick={subtractHours}> - </button>
                     </div>
-
+                    <div>
+                        <h1 className="super-heading time" style={{transform:'translateY(-30px)'}}>:</h1>
+                    </div>
                     <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
                         <button className="edit-time-buttons add" onClick={addMin}> + </button>
                         <h1 className="super-heading time">{minuteTens} {minuteOnes}</h1>
-                        <button className="edit-time-buttons add"> - </button>
+                        <button className="edit-time-buttons add" onClick={subtractMinutes}> - </button>
                     </div>
                 </div>
             </div>

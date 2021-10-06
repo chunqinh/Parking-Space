@@ -21,7 +21,7 @@ function RouterSwitch(){
              <Route path="/edit-time"  exact>
                  <EditTime/>
             </Route>
-            <Route path="/changepw"  exact>
+            <Route path="/change-pw"  exact>
                  <ChangePassward/>
             </Route>
 

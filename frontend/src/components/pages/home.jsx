@@ -2,7 +2,11 @@ import React from 'react';
 
 function LandingPage(){
     return(
-        <div>Landing</div>
+        <div className="single-height-pages">
+            <div>
+                <a href={"/edit-time"}> EDIT TIME </a>
+            </div>
+        </div>
     )
 }
 
