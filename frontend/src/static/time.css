@@ -1,5 +1,25 @@
-.edittime {
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
+.edit-time{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    padding:12px 24px;
+    height:600px;
+}
+
+.edit-time-buttons{
+    padding:16px 24px;
+    outline:none;
+    border:none;
+    border-radius: 5px;
+    margin:10px 0;
+    cursor:pointer;
+    background-color: #EEF5FF;
+    color:black;
+    font-family: 'Staatliches', sans-serif;
+    font-size: 24px;
+}
+
+.edit-time-buttons.add{
+    width:80px;
+}

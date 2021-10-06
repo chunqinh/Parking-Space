@@ -1,12 +1,17 @@
 h1,h2,h3,h4,h5,h6{
     margin-block-end: unset;
     margin-block-start: unset;
+    font-weight: normal;
 }
 
 .super-heading{
     font-family: 'Staatliches', cursive;
     font-size: 124px;
     font-weight: normal;
+}
+
+.super-heading.time{
+    font-size: 220px;
 }
 
 .heading{
@@ -19,5 +24,9 @@ h1,h2,h3,h4,h5,h6{
     font-family: 'Staatliches', cursive;
     font-size:36px;
     padding:12px 0;
-    font-weight: normal;
+}
+
+.sub-heading{
+    font-family: 'Staatliches', cursive;
+    font-size:42px;
 }

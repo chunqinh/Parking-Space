@@ -3,7 +3,7 @@ import {Route, Switch} from "react-router-dom";
 import Login from "../pages/sign-in";
 import Register from "../pages/sign-up";
 import LandingPage from "../pages/home";
-import EditTime from "../form/edittime";
+import EditTime from "../pages/edit-time";
 import ChangePassward from "../form/changepw";
 
 function RouterSwitch(){
@@ -18,7 +18,7 @@ function RouterSwitch(){
             <Route path="/" exact>
                 <LandingPage/>
             </Route>
-             <Route path="/edittime"  exact>
+             <Route path="/edit-time"  exact>
                  <EditTime/>
             </Route>
             <Route path="/changepw"  exact>
