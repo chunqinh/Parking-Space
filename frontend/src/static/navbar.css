@@ -13,6 +13,8 @@
 .logo{
     flex:1;
     padding-left: 36px;
+    display: flex;
+    align-items: center;
 }
 
 .menu{
@@ -30,10 +32,6 @@
     margin: 0 6px;
     border-radius: 32px;
     font-weight: 600;
-}
-
-.menu-links.register{
-    background-color: #242424;
 }
 
 .mobile{

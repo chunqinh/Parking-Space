@@ -10,7 +10,7 @@ function UserDashboard(){
             <div className="row dashboard">
                 <div>
                     <div className="column dashboard">
-                        <h1 className="super-heading time">00:00</h1>
+                        <h1 className="super-heading time" style={{lineHeight:'200px'}}>00:00</h1>
                         <h3 className="heading">TIME REMAINING</h3>
                         <a href={"/edit-time"} className="menu-links register" style={{borderRadius:'5px', width:'75px'}}>EDIT TIME</a>
                     </div>
