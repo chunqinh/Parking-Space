@@ -61,6 +61,12 @@ a{
   width:100%;
 }
 
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
 .row.between{
   justify-content: space-between;
 }
+
