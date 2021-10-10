@@ -34,7 +34,18 @@
     font-weight: 600;
 }
 
+.menu-links.register{
+    background-color: #242324;
+}
+
 .mobile{
     display: none;
+}
+
+.profile-button{
+    width:40px;
+    height: 40px;
+    background-color: #EEF5FF;
+    border-radius: 50px;
 }
 

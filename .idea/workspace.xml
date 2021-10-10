@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2cede31-32aa-40b5-8cbb-69c35547c0ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/icons/landing-page.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/pages/profile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/profile/account-overview.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/static/profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/google-map/map.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/google-map/map.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/navigation/navigation-bar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navigation/navigation-bar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/static/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/router-dom/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/router-dom/routes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/static/form.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/form.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/static/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/navbar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/static/text.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/text.css" afterDir="false" />
@@ -61,7 +64,7 @@
       <workItem from="1633533984168" duration="1823000" />
       <workItem from="1633546841371" duration="2124000" />
       <workItem from="1633554755050" duration="823000" />
-      <workItem from="1633638271181" duration="16008000" />
+      <workItem from="1633638271181" duration="21965000" />
     </task>
     <servers />
   </component>

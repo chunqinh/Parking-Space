@@ -12,7 +12,15 @@ input[type='text'],input[type='password']{
     font-family: 'Poppins', sans-serif;
     width:325px;
     margin-left: 15px;
-    font-size:16px;
+    font-size:18px;
+}
+
+.profile-user-details input[type='text']{
+    border: unset;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-radius: unset;
+    width:250px;
+    margin-left: 0;
 }
 
 button[type='submit']{
@@ -30,6 +38,13 @@ button[type='submit']{
     font-family: 'Staatliches', sans-serif;
     font-size: 28px;
     width:375px;
+}
+
+.login-button.profile{
+    width:250px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .links{
