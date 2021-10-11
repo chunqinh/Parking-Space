@@ -6,7 +6,7 @@ WORKDIR /root
 
 COPY package.json /.
 
-RUN npm install
+RUN apt-get update
 
 COPY . .
 
