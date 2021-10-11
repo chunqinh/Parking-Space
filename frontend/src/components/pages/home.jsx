@@ -17,8 +17,6 @@ function LandingPage(){
                     </h6>
                     <Link to="/sign-up" className="register">BECOME A MEMBER</Link>
                 </div>
-
-
             </div>
 
 
