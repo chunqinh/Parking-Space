@@ -4,7 +4,7 @@
     width:100%;
 }
 
-input[type='text'],input[type='password']{
+input[type='text'],input[type='password'],input[type='email']{
     padding:16px 24px;
     outline:none;
     border:1px solid rgba(0,0,0,0.5);
@@ -12,7 +12,15 @@ input[type='text'],input[type='password']{
     font-family: 'Poppins', sans-serif;
     width:325px;
     margin-left: 15px;
-    font-size:16px;
+    font-size:18px;
+}
+
+.profile-user-details input[type='text'],input[type="email"], .profile-user-details input[type="password"]{
+    border: unset;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-radius: unset;
+    width:250px;
+    margin-left: 0;
 }
 
 button[type='submit']{
@@ -32,6 +40,13 @@ button[type='submit']{
     width:375px;
 }
 
+.login-button.profile{
+    width:250px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .links{
     color:rgb(180,180,180);
     text-decoration: underline;
@@ -42,4 +57,14 @@ button[type='submit']{
     width:35px;
     padding:6px;
     transform: translateY(15px);
+}
+
+.register{
+    margin-top: 32px;
+    background-color: #242324;
+    color: white;
+    padding:12px 24px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 8px;
 }

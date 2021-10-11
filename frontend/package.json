@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "google-maps-react": "^2.0.6",
     "pretty-format": "^27.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -41,6 +42,8 @@
     ]
   },
   "devDependencies": {
-    "@material-ui/core": "^4.12.3"
+    "@material-ui/core": "^4.12.3",
+    "@mui/lab": "^5.0.0-alpha.50",
+    "prop-types": "^15.7.2"
   }
 }

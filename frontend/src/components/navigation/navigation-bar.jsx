@@ -18,11 +18,12 @@ function Navigation(){
         <div className="menu-main-div">
             <div className="logo">
                 <h3 className="heading">PARKAPP</h3>
+                <a href={"/dashboard"} style={{marginLeft:'24px', color:'black'}}>DASHBOARD</a>
             </div>
             <div className="menu">
                 <Link to="/" style={{display:'flex', alignItems:'center', marginRight:'16px'}}><img src={homeIcon} width={"30px"}/></Link>
                 <Link to="/sign-in" className="menu-links">LOGIN</Link>
-                <Link to="/sign-up" className="menu-links register">SIGN UP</Link>
+                <Link to="/profile"><div className="profile-button"/></Link>
             </div>
             <div className="mobile">
                 <img className="mobile-icon" src={sidebar ? closeMenu : mobileMenu} onClick={showSidebar} />

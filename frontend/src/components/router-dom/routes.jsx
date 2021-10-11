@@ -5,6 +5,8 @@ import Register from "../pages/sign-up";
 import LandingPage from "../pages/home";
 import EditTime from "../pages/edit-time";
 import ChangePassward from "../form/changepw";
+import UserDashboard from "../pages/dashboard";
+import UserProfile from "../pages/profile";
 
 function RouterSwitch(){
     return(
@@ -23,6 +25,12 @@ function RouterSwitch(){
             </Route>
             <Route path="/change-pw"  exact>
                  <ChangePassward/>
+            </Route>
+            <Route path="/dashboard"  exact>
+                <UserDashboard/>
+            </Route>
+            <Route path="/profile"  exact>
+                <UserProfile/>
             </Route>
 
     
