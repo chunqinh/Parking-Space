@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a2cede31-32aa-40b5-8cbb-69c35547c0ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/static/form.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/form.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/google-map/map.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/google-map/map.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +57,7 @@
       <workItem from="1633907586717" duration="200000" />
       <workItem from="1633967953462" duration="1981000" />
       <workItem from="1633973795455" duration="698000" />
+      <workItem from="1633975237229" duration="354000" />
     </task>
     <servers />
   </component>
