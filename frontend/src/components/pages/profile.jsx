@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AccountDetails from "../profile/account-overview";
+import ProfilePasswordChange from "../profile/change-password";
 
 //Vertical Tabs from MaterialUI https://mui.com/components/tabs/
 
@@ -58,7 +59,7 @@ export default function UserProfile() {
                     Item Two
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    Item Three
+                    <ProfilePasswordChange/>
                 </TabPanel>
             </div>
 
