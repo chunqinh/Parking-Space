@@ -26,5 +26,5 @@ function GoogleMap(){
 }
 
 export default GoogleApiWrapper({
-    apiKey: process.env.GOOGLE_PI_KEY
+    apiKey: process.env.GOOGLE_API_KEY
 })(GoogleMap);
