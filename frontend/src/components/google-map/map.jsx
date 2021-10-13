@@ -8,7 +8,7 @@ const mapStyles = {
 
 function GoogleMap(){
     return(
-        <div style={{width:'550px', height:'450px', overflow:'hidden'}}>
+        <div style={{width:'555px', height:'450px', overflow:'hidden'}}>
             {/*<Map*/}
             {/*    google={window.google}*/}
             {/*    zoom={15}*/}
