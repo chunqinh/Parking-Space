@@ -24,12 +24,16 @@ function Navigation(){
                 <Link to="/sign-in" className="menu-links">LOGIN</Link>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <Link to="/profile"><div className="profile-button"/></Link>
 =======
                 <Link to="/sign-up" className="menu-links register">SIGN UP</Link>
 >>>>>>> parent of 231eca2 (Issue #25 - Landing Page)
 =======
 >>>>>>> parent of f565482 (Issue #31 and #34 - Profile page and User Info Tab)
+=======
+                <Link to="/sign-up" className="menu-links register">SIGN UP</Link>
+>>>>>>> parent of be08821 (Merge pull request #37 from jonathaneugene/developments)
             </div>
             <div className="mobile">
                 <img className="mobile-icon" src={sidebar ? closeMenu : mobileMenu} onClick={showSidebar} />

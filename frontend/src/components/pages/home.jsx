@@ -4,6 +4,7 @@ function LandingPage(){
     return(
         <div className="single-height-pages">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <div className="row" style={{flexWrap:'nowrap', alignItems:'center'}}>
                 <div>
                     <img src={car} alt={"Undraw.co Car Illustration"} width={"700px"}/>
@@ -25,6 +26,10 @@ function LandingPage(){
 
 
 >>>>>>> parent of 07a7115 (Issue #35 - Change Password tab on Profile Page)
+=======
+            <div>
+                <a href={"/edit-time"}> EDIT TIME </a>
+>>>>>>> parent of be08821 (Merge pull request #37 from jonathaneugene/developments)
             </div>
         </div>
     )

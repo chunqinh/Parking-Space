@@ -6,6 +6,7 @@ import './static/text.css'
 import './static/navbar.css'
 import './static/time.css'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import './static/dashboard.css'
 <<<<<<< HEAD
 import './static/profile.css'
@@ -13,6 +14,8 @@ import './static/profile.css'
 >>>>>>> parent of 392c45b (Issue #32 - Dashboard for Users)
 =======
 >>>>>>> parent of f565482 (Issue #31 and #34 - Profile page and User Info Tab)
+=======
+>>>>>>> parent of be08821 (Merge pull request #37 from jonathaneugene/developments)
 import App from './App';
 
 ReactDOM.render(

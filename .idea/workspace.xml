@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
@@ -69,6 +70,12 @@
       <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/static/form.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/form.css" afterDir="false" />
 >>>>>>> parent of bff07a5 (Issue #36 - Google Map API)
+=======
+      <change afterPath="$PROJECT_DIR$/heroku.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/heroku.yml" beforeDir="false" />
+>>>>>>> parent of be08821 (Merge pull request #37 from jonathaneugene/developments)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +124,7 @@
       <workItem from="1633506664220" duration="3747000" />
       <workItem from="1633533984168" duration="1823000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1633546841371" duration="2124000" />
       <workItem from="1633554755050" duration="823000" />
 <<<<<<< HEAD
@@ -146,6 +154,9 @@
 >>>>>>> parent of 07a7115 (Issue #35 - Change Password tab on Profile Page)
 =======
 >>>>>>> parent of bff07a5 (Issue #36 - Google Map API)
+=======
+      <workItem from="1633546841371" duration="2079000" />
+>>>>>>> parent of be08821 (Merge pull request #37 from jonathaneugene/developments)
     </task>
     <servers />
   </component>
