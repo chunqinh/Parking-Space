@@ -36,5 +36,9 @@ export default GoogleMap;
 
 export default GoogleApiWrapper({
     apiKey: ""
+<<<<<<< HEAD
 })(GoogleMap);
 >>>>>>> parent of 231eca2 (Issue #25 - Landing Page)
+=======
+})(GoogleMap);
+>>>>>>> parent of bff07a5 (Issue #36 - Google Map API)
