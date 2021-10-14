@@ -1,0 +1,45 @@
+.login-form{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+}
+
+input[type='text'],input[type='password']{
+    padding:16px 24px;
+    outline:none;
+    border:1px solid rgba(0,0,0,0.5);
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    width:325px;
+    margin-left: 15px;
+    font-size:16px;
+}
+
+button[type='submit']{
+    padding:16px 24px;
+    outline:none;
+    border:none;
+    border-radius: 5px;
+    margin:10px 0;
+    cursor:pointer;
+}
+
+.login-button{
+    background-color: #4a39ea;
+    color:white;
+    font-family: 'Staatliches', sans-serif;
+    font-size: 28px;
+    width:375px;
+}
+
+.links{
+    color:rgb(180,180,180);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.password-hide-show{
+    width:35px;
+    padding:6px;
+    transform: translateY(15px);
+}
