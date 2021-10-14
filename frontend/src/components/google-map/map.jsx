@@ -35,6 +35,7 @@ export default GoogleMap;
 //apiKey: "AIzaSyAu6tPcAGxeqak8qrBXkl6UHUtOgL8bkuM"
 
 export default GoogleApiWrapper({
+<<<<<<< HEAD
     apiKey: ""
 <<<<<<< HEAD
 })(GoogleMap);
@@ -42,3 +43,7 @@ export default GoogleApiWrapper({
 =======
 })(GoogleMap);
 >>>>>>> parent of bff07a5 (Issue #36 - Google Map API)
+=======
+    apiKey: process.env.GOOGLE_PI_KEY
+})(GoogleMap);
+>>>>>>> parent of 676a08b (Issue #36)
