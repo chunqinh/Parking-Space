@@ -4,7 +4,7 @@
     width:100%;
 }
 
-input[type='text'],input[type='password'],input[type='email']{
+input[type='text'],input[type='password']{
     padding:16px 24px;
     outline:none;
     border:1px solid rgba(0,0,0,0.5);
@@ -16,7 +16,11 @@ input[type='text'],input[type='password'],input[type='email']{
     font-size:18px;
 }
 
+<<<<<<< HEAD
 .profile-user-details input[type='text'],input[type="email"], .profile-user-details input[type="password"]{
+=======
+.profile-user-details input[type='text']{
+>>>>>>> parent of 261f318 (Issue #35 - Password Change Tab on Profile)
     border: unset;
     border-bottom: 1px solid rgba(0,0,0,0.5);
     border-radius: unset;
