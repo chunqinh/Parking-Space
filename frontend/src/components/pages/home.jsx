@@ -1,10 +1,9 @@
 import React from 'react';
-import car from '../icons/landing-page.svg'
-import {Link} from "react-router-dom";
 
 function LandingPage(){
     return(
         <div className="single-height-pages">
+<<<<<<< HEAD
             <div className="row" style={{flexWrap:'nowrap', alignItems:'center'}}>
                 <div>
                     <img src={car} alt={"Undraw.co Car Illustration"} width={"700px"}/>
@@ -17,9 +16,11 @@ function LandingPage(){
                     </h6>
                     <Link to="/sign-up" className="register">BECOME A MEMBER</Link>
                 </div>
+=======
+            <div>
+                <a href={"/edit-time"}> EDIT TIME </a>
+>>>>>>> parent of 231eca2 (Issue #25 - Landing Page)
             </div>
-
-
         </div>
     )
 }

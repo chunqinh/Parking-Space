@@ -25,8 +25,16 @@ function GoogleMap(){
     )
 }
 
+<<<<<<< HEAD
 // export default GoogleApiWrapper({
 //     apiKey: process.env.GOOGLE_API_KEY
 // })(GoogleMap);
 
 export default GoogleMap;
+=======
+//apiKey: "AIzaSyAu6tPcAGxeqak8qrBXkl6UHUtOgL8bkuM"
+
+export default GoogleApiWrapper({
+    apiKey: ""
+})(GoogleMap);
+>>>>>>> parent of 231eca2 (Issue #25 - Landing Page)

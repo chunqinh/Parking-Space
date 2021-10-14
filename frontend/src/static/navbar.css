@@ -13,8 +13,6 @@
 .logo{
     flex:1;
     padding-left: 36px;
-    display: flex;
-    align-items: center;
 }
 
 .menu{
@@ -35,7 +33,11 @@
 }
 
 .menu-links.register{
+<<<<<<< HEAD
     background-color: #242324;
+=======
+    background-color: #242424;
+>>>>>>> parent of 231eca2 (Issue #25 - Landing Page)
 }
 
 .mobile{

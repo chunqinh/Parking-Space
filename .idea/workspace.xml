@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a2cede31-32aa-40b5-8cbb-69c35547c0ea" name="Default Changelist" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
@@ -13,6 +14,17 @@
       <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/heroku.yml" beforeDir="false" />
 >>>>>>> parent of 392c45b (Issue #32 - Dashboard for Users)
+=======
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/google-map/map.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/pages/dashboard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/static/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/router-dom/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/router-dom/routes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/static/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/index.css" afterDir="false" />
+>>>>>>> parent of 231eca2 (Issue #25 - Landing Page)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +75,7 @@
 <<<<<<< HEAD
       <workItem from="1633546841371" duration="2124000" />
       <workItem from="1633554755050" duration="823000" />
+<<<<<<< HEAD
       <workItem from="1633638271181" duration="23794000" />
       <workItem from="1633907586717" duration="200000" />
       <workItem from="1633967953462" duration="1981000" />
@@ -72,6 +85,9 @@
 =======
       <workItem from="1633546841371" duration="2079000" />
 >>>>>>> parent of 392c45b (Issue #32 - Dashboard for Users)
+=======
+      <workItem from="1633638271181" duration="11962000" />
+>>>>>>> parent of 231eca2 (Issue #25 - Landing Page)
     </task>
     <servers />
   </component>
