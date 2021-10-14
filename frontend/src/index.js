@@ -7,9 +7,12 @@ import './static/navbar.css'
 import './static/time.css'
 <<<<<<< HEAD
 import './static/dashboard.css'
+<<<<<<< HEAD
 import './static/profile.css'
 =======
 >>>>>>> parent of 392c45b (Issue #32 - Dashboard for Users)
+=======
+>>>>>>> parent of f565482 (Issue #31 and #34 - Profile page and User Info Tab)
 import App from './App';
 
 ReactDOM.render(

@@ -23,10 +23,13 @@ function Navigation(){
                 <Link to="/" style={{display:'flex', alignItems:'center', marginRight:'16px'}}><img src={homeIcon} width={"30px"}/></Link>
                 <Link to="/sign-in" className="menu-links">LOGIN</Link>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <Link to="/profile"><div className="profile-button"/></Link>
 =======
                 <Link to="/sign-up" className="menu-links register">SIGN UP</Link>
 >>>>>>> parent of 231eca2 (Issue #25 - Landing Page)
+=======
+>>>>>>> parent of f565482 (Issue #31 and #34 - Profile page and User Info Tab)
             </div>
             <div className="mobile">
                 <img className="mobile-icon" src={sidebar ? closeMenu : mobileMenu} onClick={showSidebar} />

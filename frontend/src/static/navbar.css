@@ -32,6 +32,7 @@
     font-weight: 600;
 }
 
+<<<<<<< HEAD
 .menu-links.register{
 <<<<<<< HEAD
     background-color: #242324;
@@ -40,14 +41,9 @@
 >>>>>>> parent of 231eca2 (Issue #25 - Landing Page)
 }
 
+=======
+>>>>>>> parent of f565482 (Issue #31 and #34 - Profile page and User Info Tab)
 .mobile{
     display: none;
-}
-
-.profile-button{
-    width:40px;
-    height: 40px;
-    background-color: #EEF5FF;
-    border-radius: 50px;
 }
 
