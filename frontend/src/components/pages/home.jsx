@@ -16,10 +16,15 @@ function LandingPage(){
                     </h6>
                     <Link to="/sign-up" className="register">BECOME A MEMBER</Link>
                 </div>
+<<<<<<< HEAD
 =======
             <div>
                 <a href={"/edit-time"}> EDIT TIME </a>
 >>>>>>> parent of 231eca2 (Issue #25 - Landing Page)
+=======
+
+
+>>>>>>> parent of 07a7115 (Issue #35 - Change Password tab on Profile Page)
             </div>
         </div>
     )

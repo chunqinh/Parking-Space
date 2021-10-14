@@ -17,10 +17,14 @@ input[type='text'],input[type='password']{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .profile-user-details input[type='text'],input[type="email"], .profile-user-details input[type="password"]{
 =======
 .profile-user-details input[type='text']{
 >>>>>>> parent of 261f318 (Issue #35 - Password Change Tab on Profile)
+=======
+.profile-user-details input[type='text'],input[type='email'],input[type="password"]{
+>>>>>>> parent of 07a7115 (Issue #35 - Change Password tab on Profile Page)
     border: unset;
     border-bottom: 1px solid rgba(0,0,0,0.5);
     border-radius: unset;

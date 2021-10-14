@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
@@ -54,6 +55,15 @@
       <change beforePath="$PROJECT_DIR$/frontend/src/static/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/navbar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/static/text.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/text.css" afterDir="false" />
 >>>>>>> parent of 261f318 (Issue #35 - Password Change Tab on Profile)
+=======
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/profile/change-password.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/changepw.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/changepw.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/account-overview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/account-overview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/static/form.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/form.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/static/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/profile.css" afterDir="false" />
+>>>>>>> parent of 07a7115 (Issue #35 - Change Password tab on Profile Page)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +120,7 @@
       <workItem from="1633638271181" duration="23794000" />
       <workItem from="1633907586717" duration="200000" />
       <workItem from="1633967953462" duration="1981000" />
+<<<<<<< HEAD
       <workItem from="1633973795455" duration="698000" />
       <workItem from="1633975237229" duration="354000" />
       <workItem from="1634148025761" duration="387000" />
@@ -125,6 +136,8 @@
 =======
       <workItem from="1633638271181" duration="21965000" />
 >>>>>>> parent of 261f318 (Issue #35 - Password Change Tab on Profile)
+=======
+>>>>>>> parent of 07a7115 (Issue #35 - Change Password tab on Profile Page)
     </task>
     <servers />
   </component>
