@@ -6,6 +6,7 @@ import LandingPage from "../pages/home";
 import EditTime from "../pages/edit-time";
 import ChangePassward from "../form/changepw";
 import UserDashboard from "../pages/dashboard";
+import UserProfile from "../pages/profile"
 
 function RouterSwitch(){
     return(
@@ -28,8 +29,9 @@ function RouterSwitch(){
             <Route path="/dashboard" exact>
                 <UserDashboard/>
             </Route>
-
-    
+            <Route path="/user-profile" exact>
+                <UserProfile/>
+            </Route>
 
         </Switch>
     )
