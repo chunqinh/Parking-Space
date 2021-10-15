@@ -3,50 +3,85 @@ import React from 'react';
 function EditSchedule(){
     return(
         <div className="edit-schedule">
-            <div style={{marginTop:'25px', textAlign:'center'}}>
-                <h1 className="sub-heading">Edit Schedule</h1>
+            <div style={{textAlign:'center'}}>
+                <h1 className="sub-heading">YOUR SCHEDULE</h1>
             </div>
             <div className="row">
-                <div style={{marginLeft:'10px'}}>
-                    <h4 className="Time">8:00 AM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">9:00 AM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">10:00 AM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">11:00 AM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">12:00 PM</h4>git
-                    <input type={"text"}/>
-                    <h4 className="Time">1:00 PM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">2:00 PM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">3:00 PM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">4:00 PM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">5:00 PM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">6:00 PM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">7:00 PM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">8:00 PM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">9:00 PM</h4>
-                    <input type={"text"}/>
-                    <h4 className="Time">10:00 PM</h4>
-                    <input type={"text"}/>
+                <div className="schedule-column">
+                    <h3 className="week">Monday</h3>
+                    <div className="week-column">
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 8:00 AM - 8:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 8:00 AM - 8:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="column">
-                <div style={{marginTop:'10px'}}>
-                    <h3 className="Week">Monday</h3>
-                    <h3 className="Week">Tuesday</h3>
-                    <h3 className="Week">Wednesday</h3>
-                    <h3 className="Week">Thursday</h3>
-                    <h3 className="Week">Friday</h3>
+                <div  className="schedule-column">
+                    <h3 className="week">Tuesday</h3>
+                    <div className="week-column">
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 08:00 AM - 08:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 10:00 AM - 10:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 01:00 PM - 01:50 PM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 04:00 PM - 04:50 PM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+                    </div>
+                </div>
+                <div  className="schedule-column">
+                    <h3 className="week">Wednesday</h3>
+                    <div className="week-column">
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 8:00 AM - 8:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 8:00 AM - 8:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 8:00 AM - 8:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+
+                    </div>
+                </div>
+                <div  className="schedule-column">
+                    <h3 className="week">Thursday</h3>
+                    <div className="week-column">
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 8:00 AM - 8:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="schedule-column">
+                    <h3 className="week">Friday</h3>
+                    <div className="week-column">
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 8:00 AM - 8:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+                        <div className="week-column-box">
+                            <h3 className="schedule-time"> 8:00 AM - 8:50 AM</h3>
+                            <h2 className="schedule-location"> Knox 112 </h2>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
