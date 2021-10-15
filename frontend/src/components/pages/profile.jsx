@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import AccountDetails from "../profile/account-overview";
 import ChangePassward from "../form/changepw";
 import ProfilePasswordChange from "../profile/change-password";
+import EditSchedule from "../profile/schedule";
 
 //Vertical Tabs from MaterialUI https://mui.com/components/tabs/
 
@@ -57,7 +58,7 @@ export default function UserProfile() {
                     <AccountDetails/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    Schedule
+                    <EditSchedule/>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <ProfilePasswordChange/>
