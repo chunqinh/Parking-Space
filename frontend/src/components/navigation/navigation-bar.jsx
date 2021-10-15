@@ -23,7 +23,7 @@ function Navigation(){
             <div className="menu">
                 <Link to="/" style={{display:'flex', alignItems:'center', marginRight:'16px'}}><img src={homeIcon} width={"30px"}/></Link>
                 <Link to="/sign-in" className="menu-links">LOGIN</Link>
-                <Link to="/sign-up" className="menu-links register">SIGN UP</Link>
+                <Link to="/profile"><div className="profile-button"/></Link>
             </div>
             <div className="mobile">
                 <img className="mobile-icon" src={sidebar ? closeMenu : mobileMenu} onClick={showSidebar} />
