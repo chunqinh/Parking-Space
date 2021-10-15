@@ -1,0 +1,22 @@
+.schedule-column{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.week-column{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    margin: 0 6px;
+}
+
+.week-column-box{
+    background-color: #4a39ea;
+    padding: 24px 12px;
+    border-radius: 5px;
+    margin:12px 0;
+}
+

@@ -19,7 +19,7 @@ function ProfilePasswordChange(){
                             </div>
                         </div>
                     </div>
-                    <div style={{textAlign:'center',marginTop:'32px'}}>
+                    <div style={{textAlign:'right',marginTop:'32px'}}>
                         <button type={"submit"} className="login-button profile">UPDATE PASSWORD</button>
                     </div>
 

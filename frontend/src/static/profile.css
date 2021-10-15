@@ -28,7 +28,7 @@
 }
 
 .profile-tab-panels{
-    width:750px;
+    width:800px;
     display: grid;
     place-items: center;
     place-content: center;
