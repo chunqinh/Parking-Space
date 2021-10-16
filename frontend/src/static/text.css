@@ -45,3 +45,23 @@ h1,h2,h3,h4,h5,h6{
     margin-top: 18px;
     color: rgb(128, 128, 128);
 }
+
+.week{
+    font-family: 'Staatliches', cursive;
+    font-size:28px;
+    margin: 0 6px;
+}
+
+.schedule-time{
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color:white;
+}
+
+.schedule-location{
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color:white;
+}

@@ -15,7 +15,10 @@ function LandingPage(){
                         and answer few questions and forget about all the hassle in finding a spot on University at Buffalo,
                         North Campus.
                     </h6>
-                    <Link to="/sign-up" className="register">BECOME A MEMBER</Link>
+                    <div style={{textAlign:'right', marginTop:'28px'}}>
+                        <Link to="/sign-up" className="register">BECOME A MEMBER</Link>
+                    </div>
+
                 </div>
             </div>
 
