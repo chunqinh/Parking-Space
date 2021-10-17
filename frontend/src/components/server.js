@@ -37,6 +37,34 @@ app.get('/', (req, res) => {
 
 
 app.use(express.json())
+
+app.post('/register', (req, ress) => {
+    const  username  = req.body.username;
+    const password = req.body.password;
+    const password2 = req.body.password2;
+
+    if((password != password2) || password == "" || password2 == "" || username == ""){
+        ress.send("invalid");
+    }else{
+        const text = 'INSERT INTO users (username, password) VALUES($1, $2);';
+        const values = [username, password];
+
+        const options = {
+            httpOnly: true,
+            signed: true,
+        };
+
+        pool.query(text, values, (err, res) => {
+            if (err) {
+                ress.send(err);
+            } else {
+                ress.send("registered");
+            }
+        })
+    }
+
+})
+
 app.post('/checklogin', (req, ress) => {
     const  username  = req.body.name;
     const password = req.body.password;
