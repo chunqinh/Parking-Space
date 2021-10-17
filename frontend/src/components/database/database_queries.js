@@ -35,35 +35,32 @@ function createUser(username, password) {
 
         })
     }
-     async function getPassword2(username){
+    function getPassword2(username){
         const text = 'SELECT password FROM users WHERE username = $1';
         const values = [username];
 
          let pw;
-// callback
 
 
-         await pool.query(text,values, (err, res) => {
-             if (err) {
-                 console.log(err.stack);
-             } else {
-                 pw = res.rows[0]['password'];
-                 //console.log(res.fields.map(field => field.name)) // ['first_name', 'last_name']
-                 //console.log(res.rows[0]['password']); // ['Brian', 'Carlson']
-             }
-         })
-         console.log(res.rows[0]['password']);
-         return res.rows[0]['password'];
-            // pool.query(text, values)
-            //     .then(res =>{
-            //         console.log(res.rows[0]['password']);
-            //
-            //             pw = res.rows[0]['password'].toString();
-            //
-            //
-            //     })
-            //
-            //     .catch(e=>console.error(e.stack))
+            var queryFunction = function(text, values){
+                return new Promise(function(resolve, reject){
+                    pool.query(text, values, function(err, result) {
+                        if(err)
+                            return reject(err);
+                        resolve(result.rows[0]['password']);
+                    });
+                    pool.end();
+                });
+            }
+
+            queryFunction(text, values)
+                .then(function(result){
+                    console.log(result);
+
+                }).catch(function(err){
+               console.log(err);
+            });
+
 
     }
 

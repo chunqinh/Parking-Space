@@ -1,10 +1,14 @@
-import React from 'react'
-import blob from '../icons/login-blob.svg'
+import React from 'react';
+import blob from '../icons/login-blob.svg';
 import { ReactComponent as blob2 } from "../icons/login-blob.svg";
+
+
 
 import LoginForm from "../form/login";
 
+
 function Login(){
+
     return(
         <div>
             <div className="single-height-pages">
