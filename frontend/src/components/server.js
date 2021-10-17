@@ -5,6 +5,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const Pool = require('pg').Pool
+
+const bcrypt = require('bcryptjs');
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
@@ -43,31 +45,37 @@ app.post('/register', (req, ress) => {
     const password = req.body.password;
     const password2 = req.body.password2;
 
-    if((password != password2) || password == "" || password2 == "" || username == ""){
+    if((password.toString() != password2.toString()) || password == "" || password2 == "" || username == ""){
         ress.send("invalid");
     }else{
         const text = 'INSERT INTO users (username, password) VALUES($1, $2);';
-        const values = [username, password];
+
 
         const options = {
             httpOnly: true,
             signed: true,
         };
-
-        pool.query(text, values, (err, res) => {
-            if (err) {
-                ress.send(err);
-            } else {
-                ress.send("registered");
-            }
+        bcrypt.genSalt().then(salt=>{
+            bcrypt.hash(password, salt).then(hash=>{
+                const values = [username, hash.toString()];
+                console.log(hash.toString());
+                pool.query(text, values, (err, res) => {
+                    if (err) {
+                        ress.send(err);
+                    } else {
+                        ress.send("registered");
+                    }
+                })
+            })
         })
+
     }
 
 })
 
 app.post('/checklogin', (req, ress) => {
     const  username  = req.body.name;
-    const password = req.body.password;
+    const _hash = req.body.password;
     const text = 'SELECT password FROM users WHERE username = $1';
     const values = [username];
 
@@ -75,19 +83,43 @@ app.post('/checklogin', (req, ress) => {
         httpOnly: true,
         signed: true,
     };
+    // pool.query(text, values, (err, res) => {
+    //     if (err) {
+    //         console.log(err.stack)
+    //     } else {
+    //         console.log(res.rows[0]['password'])
+    //         if(password == res.rows[0]['password']){
+    //             ress.cookie('username', username, options).send({screen: username});
+    //         }else{
+    //             ress.send("wrong password");
+    //         }
+    //     }
+    // })
+    bcrypt.genSalt().then(salt=>{
+        bcrypt.hash(_hash, salt).then(hash=>{
+            pool.query(text, values, (err, res) => {
+                if (err) {
+                    console.log(err.stack)
+                } else {
+                    console.log(res.rows[0]['password'])
+                    bcrypt.compare(res.rows[0]['password'], hash) .then(result =>{
+                        if(result){
+                            ress.cookie('username', username, options).send({screen: username});
+                        }else{
+                            ress.send("wrong password");
+                        }
+                    });
+                    // if(password == res.rows[0]['password']){
+                    //
+                    // }else{
+                    //
+                    // }
+                }
+            })
 
-    pool.query(text, values, (err, res) => {
-        if (err) {
-            console.log(err.stack)
-        } else {
-            console.log(res.rows[0]['password'])
-            if(password == res.rows[0]['password']){
-                ress.cookie('username', username, options).send({screen: username});
-            }else{
-                ress.send("wrong password");
-            }
-        }
+        });
     })
+
 
 })
 app.get('/auth', (req, ress) => {
