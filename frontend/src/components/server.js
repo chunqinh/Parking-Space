@@ -22,13 +22,6 @@ app.use(bodyParser.json());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const auth = basicAuth({
-    users: {
-        admin: '123',
-        user: '456',
-    },
-
-});
 
 const PORT = process.env.PORT || 5000;
 
@@ -42,47 +35,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.js'));
 });
 
-app.get('/authenticate', auth, (req, res) => {
-    const options = {
-        httpOnly: true,
-        signed: true,
-    };
-
-    console.log(req.auth.user);
-
-    if (req.auth.user === 'admin') {
-        res.cookie('name', 'admin', options).send({ screen: 'admin' });
-    } else if (req.auth.user === 'user') {
-        res.cookie('name', 'user', options).send({ screen: 'user' });
-    }
-});
-
-app.get('/read-cookie', (req, res) => {
-    console.log(req.signedCookies);
-    if (req.signedCookies.name === 'admin') {
-        res.send({ screen: 'admin' });
-    } else if (req.signedCookies.name === 'user') {
-        res.send({ screen: 'user' });
-    } else {
-        res.send({ screen: 'auth' });
-    }
-});
-
-app.get('/clear-cookie', (req, res) => {
-    res.clearCookie('name').end();
-});
-
-app.get('/get-data', (req, res) => {
-    if (req.signedCookies.name === 'admin') {
-        res.send('This is admin panel');
-    } else if (req.signedCookies.name === 'user') {
-        res.send('This is user data');
-    } else {
-        res.end();
-    }
-});
-
-const merchant_model = require('C:/Users/alain/WebstormProjects/Parking-Space/frontend/src/components/database/database_queries.js')
 
 app.use(express.json())
 app.post('/checklogin', (req, ress) => {
@@ -91,13 +43,18 @@ app.post('/checklogin', (req, ress) => {
     const text = 'SELECT password FROM users WHERE username = $1';
     const values = [username];
 
+    const options = {
+        httpOnly: true,
+        signed: true,
+    };
+
     pool.query(text, values, (err, res) => {
         if (err) {
             console.log(err.stack)
         } else {
             console.log(res.rows[0]['password'])
             if(password == res.rows[0]['password']){
-                ress.send("success");
+                ress.cookie('username', username, options).send({screen: username});
             }else{
                 ress.send("wrong password");
             }
@@ -105,4 +62,28 @@ app.post('/checklogin', (req, ress) => {
     })
 
 })
+app.get('/auth', (req, ress) => {
+    const text = 'SELECT username FROM users WHERE username = $1';
+    if(req.signedCookies.username == null){
+        ress.send("notloggedin");
+    }
+    else{
+        const values = [req.signedCookies.username];
+        console.log(req.signedCookies.username);
+        pool.query(text, values, (err, res) => {
+            if (err) {
+                console.log(err.stack)
+            } else {
+
+                if( res.rows[0]['username'] == req.signedCookies.username){
+                    ress.send("loggedin")
+                }else{
+                    ress.send("notloggedin");
+                }
+            }
+        })
+    }
+
+
+});
 
