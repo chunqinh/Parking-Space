@@ -106,7 +106,9 @@ app.post('/checklogin', (req, ress) => {
                         console.log(res.rows[0]['password']);
 
                         if(result){
-                            ress.cookie('username', username, options).send({screen: username});
+                            ress.cookie('username', username, options);
+                            ress.redirect(301, '/dashboard');
+
                         }else{
                             ress.send("wrong password");
                         }
