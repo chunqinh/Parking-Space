@@ -1,21 +1,25 @@
 import React, {useState} from 'react';
-import hide from '../icons/visibility_off_black_24dp.svg'
-import show from '../icons/visibility_black_24dp.svg'
+import hide from '../icons/visibility_off_black_24dp.svg';
+import show from '../icons/visibility_black_24dp.svg';
+const axios = require('axios').default;
+
+
+// const express = require('express');
+// const axios = express();
 
 function LoginForm(){
-
     const [password, setPassword] = useState(false);
     const showPassword = () => setPassword(!password);
     return(
-        <form className="login-form">
+        <form className="login-form" method = "POST" action= "http://localhost:5000/checklogin" >
             <div>
                 <h6 className="labels">USERNAME:</h6>
-                <input type={"text"}/>
+                <input type={"text"} name={"name"}/>
             </div>
             <div>
                 <h6 className="labels">PASSWORD:</h6>
                 <div>
-                    <input type={password ? "text":"password"}/>
+                    <input type={password ? "text":"password"} name={"password"}/>
                     {password ? <img src={hide} className="password-hide-show" onClick={showPassword}/> : <img src={show} className="password-hide-show" onClick={showPassword}/>}
                 </div>
             </div>
@@ -26,5 +30,9 @@ function LoginForm(){
         </form>
     )
 }
+
+
+
+
 
 export default LoginForm;
