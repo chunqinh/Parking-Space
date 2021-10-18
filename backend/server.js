@@ -57,7 +57,7 @@ app.post('/register', (req, ress) => {
         bcrypt.genSalt().then(salt=>{
             bcrypt.hash(password, salt).then(hash=>{
                 const values = [username, hash.toString()];
-                console.log(salt);
+                console.log(password);
                 pool.query(text, values, (err, res) => {
                     if (err) {
                         ress.send(err);
