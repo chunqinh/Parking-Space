@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
 import hide from '../icons/visibility_off_black_24dp.svg';
 import show from '../icons/visibility_black_24dp.svg';
-const axios = require('axios').default;
 
 
-// const express = require('express');
-// const axios = express();
 
 function LoginForm(){
     const [password, setPassword] = useState(false);

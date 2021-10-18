@@ -2,20 +2,16 @@ version: '3'
 
 services:
   backend:
-    env_file:
-      "./backend/backend.env"
     build:
       context: ./backend
       dockerfile: ./Dockerfile
-    image: "dmurphy1217/twitter-sentiment-backend"
+    image: "parkapp-backend"
     ports:
-      - "5000:5000"
+      - "5001:5000"
   frontend:
     build:
-      context: ./client
+      context: ./frontend
       dockerfile: ./Dockerfile
     image: "parkapp-frontend"
     ports:
-      - "3000:3000"
-    links:
-      - "backend"
+      - "3013:3000"
