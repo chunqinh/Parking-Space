@@ -41,9 +41,9 @@ button[type='submit']{
 }
 
 .login-button.profile{
-    width:250px;
+    width:unset;
     font-family: 'Poppins', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
 }
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import GoogleMap from "../google-map/map";
 
 function UserDashboard(){
 
@@ -8,8 +7,8 @@ function UserDashboard(){
     return(
         <div className="single-height-pages">
             <div className="row dashboard">
-                <div>
-                    <div className="column dashboard">
+                <div style={{textAlign:'center'}}>
+                    <div className="column dashboard" >
                         <h1 className="super-heading time" style={{lineHeight:'200px'}}>00:00</h1>
                         <h3 className="heading">TIME REMAINING</h3>
                         <a href={"/edit-time"} className="menu-links register" style={{borderRadius:'5px', width:'85px'}}>EDIT TIME</a>
@@ -23,7 +22,9 @@ function UserDashboard(){
                         </div>
                     </div>
                 </div>
-                <GoogleMap/>
+                <div>
+
+                </div>
             </div>
         </div>
     )

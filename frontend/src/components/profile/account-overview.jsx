@@ -26,7 +26,7 @@ function AccountDetails(){
                         <input type={"text"}/>
                     </div>
                 </div>
-                <div style={{marginTop:'48px', textAlign:'center'}}>
+                <div style={{marginTop:'48px', textAlign:'right'}}>
                     <button type={"submit"} className="login-button profile">SAVE CHANGES</button>
                 </div>
             </form>
