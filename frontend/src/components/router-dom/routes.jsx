@@ -7,6 +7,7 @@ import EditTime from "../pages/edit-time";
 import ChangePassward from "../form/changepw";
 import UserDashboard from "../pages/dashboard";
 import UserProfile from "../pages/profile"
+import PrivateRoute from "./PrivateRoute";
 
 function RouterSwitch(){
     return(
@@ -20,19 +21,12 @@ function RouterSwitch(){
             <Route path="/" exact>
                 <LandingPage/>
             </Route>
-             <Route path="/edit-time"  exact>
-                 <EditTime/>
-            </Route>
+             <PrivateRoute path="/edit-time"  exact component={EditTime}/>
             <Route path="/change-pw"  exact>
                  <ChangePassward/>
             </Route>
-            <Route path="/dashboard" exact>
-                <UserDashboard/>
-            </Route>
-            <Route path="/user-profile" exact>
-                <UserProfile/>
-            </Route>
-
+            <PrivateRoute path="/dashboard" exact component={UserDashboard}/>
+            <PrivateRoute exact path="/user-profile" component={UserProfile} />
         </Switch>
     )
 }
