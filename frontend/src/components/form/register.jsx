@@ -29,7 +29,8 @@ function RegisterForm(){
             await register(usernameRef.current.value, passwordRef.current.value)
             history.push('/dashboard')
         } catch{
-            setError("Failed to create an account")
+            setLoading(false);
+            return setError("Failed to create an account")
         }
 
     }

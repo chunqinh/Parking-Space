@@ -28,7 +28,8 @@ function LoginForm(){
             await login(usernameRef.current.value, passwordRef.current.value)
             history.push('/dashboard')
         } catch{
-            setError("Failed to login")
+            setLoading(false);
+            return setError("Failed to login")
         }
 
     }
