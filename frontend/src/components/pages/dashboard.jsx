@@ -1,4 +1,5 @@
 import React from 'react'
+import map from '../icons/north-campus-map.jpg'
 
 function UserDashboard(){
 
@@ -23,7 +24,7 @@ function UserDashboard(){
                     </div>
                 </div>
                 <div>
-
+                    <img src={map}/>
                 </div>
             </div>
         </div>

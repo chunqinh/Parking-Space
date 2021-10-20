@@ -54,6 +54,9 @@ function RegisterForm(){
             </div>
             <div style={{display:'flex',flexDirection:'column', marginTop:'24px', alignItems:'center'}}>
                 <button disabled={loading} type={"submit"} className="login-button" style={{background:'#232424'}}> REGISTER </button>
+                <div>
+                    <a href={"/sign-in"} className="links" style={{marginLeft:'18px'}}> Already have an account? </a>
+                </div>
             </div>
         </form>
     )
