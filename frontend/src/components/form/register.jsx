@@ -20,6 +20,9 @@ function RegisterForm(){
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError('Password do not match')
         }
+        else if (passwordRef.current.value.toString().length < 6){
+            return setError('Password should at-least have 6 characters')
+        }
         try {
             setError("");
             setLoading(true);
@@ -45,8 +48,8 @@ function RegisterForm(){
                 <h6 className="labels">CONFIRM PASSWORD:</h6>
                 <input type={"password"} ref={passwordConfirmRef}/>
             </div>
-            <div>
-                {error && <h6>{error}</h6>}
+            <div style={{textAlign:'center'}}>
+                {error && <h6 className="error">{error}</h6>}
             </div>
             <div style={{display:'flex',flexDirection:'column', marginTop:'24px', alignItems:'center'}}>
                 <button disabled={loading} type={"submit"} className="login-button" style={{background:'#232424'}}> REGISTER </button>

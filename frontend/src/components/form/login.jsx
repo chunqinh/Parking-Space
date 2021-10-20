@@ -21,6 +21,7 @@ function LoginForm(){
     async function handleSubmit(e) {
         e.preventDefault()
         console.log(usernameRef.current.valueOf());
+
         try {
             setError("");
             setLoading(true);
@@ -46,12 +47,16 @@ function LoginForm(){
                     {password ? <img src={hide} className="password-hide-show" onClick={showPassword}/> : <img src={show} className="password-hide-show" onClick={showPassword}/>}
                 </div>
             </div>
-            <div>
-                {error && <h6>{error}</h6>}
+            <div style={{textAlign:'center'}}>
+                {error && <h6 className="error">{error}</h6>}
             </div>
-            <div style={{display:'flex',flexDirection:'column', marginTop:'24px', alignItems:'center'}}>
+            <div style={{display:'flex',flexDirection:'column', marginTop:'12px', alignItems:'center'}}>
                 <button disabled={loading} type={"submit"} className="login-button"> LOGIN </button>
-                <a href={"/change-pw"} className="links"> Forget your password? </a>
+                <div>
+                    <a href={"/change-pw"} className="links"> Forget your password? </a>
+                    <a href={"/sign-up"} className="links" style={{marginLeft:'18px'}}> Don't have an account? </a>
+                </div>
+
             </div>
         </form>
     )
