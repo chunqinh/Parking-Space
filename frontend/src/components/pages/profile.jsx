@@ -5,7 +5,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AccountDetails from "../profile/account-overview";
-import ChangePassward from "../form/changepw";
 import ProfilePasswordChange from "../profile/change-password";
 import EditSchedule from "../profile/schedule";
 
