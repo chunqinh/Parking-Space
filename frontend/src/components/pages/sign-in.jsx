@@ -19,10 +19,7 @@ function Login(){
                     <div className="single-height-blob">
                         <div style={{width:'400px', textAlign:'right'}}>
                             <h1 className="super-heading">TROUBLE FINDING A SPOT?</h1>
-
                         </div>
-
-
                     </div>
                     <div className="absolute-blob">
                         <img src={blob}/>

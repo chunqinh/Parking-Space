@@ -9,22 +9,14 @@ function ChangePassword(){
             <div className="single-height-pages">
                 <div className="login">
                     <div>
-                        <ForgetPassword/>
+                        <ForgetPassword inProfile={false}/>
                     </div>
                     <div className="single-height-blob">
-                        <div style={{width:'400px', textAlign:'right'}}>
+                        <div style={{width:'450px', textAlign:'right'}}>
                             <h1 className="super-heading">RESET YOUR PASSWORD.</h1>
                         </div>
                     </div>
-                    <div className="absolute-blob">
-                        <img src={blob}/>
-                    </div>
-                    <div className="absolute-blob2">
-                        <img src={blob}/>
-                    </div>
-                    <div className="absolute-blob3">
-                        <img src={blob}/>
-                    </div>
+
                 </div>
             </div>
         </div>
