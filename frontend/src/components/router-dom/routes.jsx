@@ -8,6 +8,7 @@ import ChangePassward from "../form/changepw";
 import UserDashboard from "../pages/dashboard";
 import UserProfile from "../pages/profile"
 import PrivateRoute from "./PrivateRoute";
+import FreeLot from '../pages/free-parking-lots';
 
 function RouterSwitch(){
     return(
@@ -27,6 +28,9 @@ function RouterSwitch(){
             </Route>
             <PrivateRoute path="/dashboard" exact component={UserDashboard}/>
             <PrivateRoute exact path="/user-profile" component={UserProfile} />
+            <Route path="/free-parking-lots" exact>
+                <FreeLot/>
+            </Route>
         </Switch>
     )
 }
