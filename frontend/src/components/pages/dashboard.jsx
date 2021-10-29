@@ -1,5 +1,6 @@
 import React from 'react'
 import map from '../icons/north-campus-map.jpg'
+import GoogleMaps from "../google-map-api/map";
 
 function UserDashboard(){
 
@@ -24,7 +25,7 @@ function UserDashboard(){
                     </div>
                 </div>
                 <div>
-                    <img src={map}/>
+                    <GoogleMaps/>
                 </div>
             </div>
         </div>
