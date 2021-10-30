@@ -1,6 +1,8 @@
 import React from 'react';
+import {useAuth} from "../../context/AuthContext";
 
 function AccountDetails(){
+    const {currentUser} = useAuth();
     return(
         <div>
             <h2 className="heading">ACCOUNT OVERVIEW</h2>
@@ -19,7 +21,7 @@ function AccountDetails(){
                 <div className="row" style={{marginTop:'48px'}}>
                     <div style={{marginRight:'32px'}}>
                         <h6 className="labels profile">EMAIL ID:</h6>
-                        <input type={"email"}/>
+                        <input type={"email"} value={currentUser.email} disabled={true}/>
                     </div>
                     <div>
                         <h6 className="labels profile">PHONE NUMBER:</h6>
