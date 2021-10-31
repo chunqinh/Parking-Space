@@ -62,6 +62,7 @@ export default function UserProfile() {
                 <TabPanel value={value} index={2}>
                     <ProfilePasswordChange/>
                 </TabPanel>
+
             </div>
 
         </div>
