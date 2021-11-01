@@ -28,7 +28,7 @@ function Navigation(){
         <div className="menu-main-div">
             <div className="logo">
                 <h3 className="heading">PARKAPP</h3>
-                {currentUser !== null && <a href={"/dashboard"} style={{marginLeft:'24px', color:'black'}}>DASHBOARD</a>}
+                {currentUser !== null && <Link to={"/dashboard"} style={{marginLeft:'24px', color:'black'}}>DASHBOARD</Link>}
             </div>
             <div className="menu">
                 {currentUser === null && <Link to="/" style={{display:'flex', alignItems:'center', marginRight:'16px'}}><img src={homeIcon} width={"30px"}/></Link>}
