@@ -25,3 +25,21 @@
     font-weight: 600;
     border-radius: 8px;
 }
+
+.dashboard-buttons{
+    outline: none;
+    border: none;
+    padding: 12px;
+    margin: 24px 12px 0 0;
+    border-radius: 5px;
+    background-color: #EEF5FF;
+    text-transform: uppercase;
+    font-family: 'Staatliches', sans-serif;
+    font-size:20px;
+    cursor: pointer;
+}
+
+.dashboard-buttons.active{
+    background-color: #4a39ea;
+    color:white;
+}

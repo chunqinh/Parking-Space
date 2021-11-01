@@ -15,14 +15,15 @@ function UserDashboard(){
                         <h3 className="heading">TIME REMAINING</h3>
                         <a href={"/edit-time"} className="menu-links register" style={{borderRadius:'5px', width:'85px'}}>EDIT TIME</a>
                     </div>
-                    <div className="column dashboard" style={{marginTop:'64px'}}>
-                        <h3 className="heading">AVAILABLE PARKING LOTS</h3>
-                        <div className="dashboard-parking-lots">
-                            {availableParkingLots.map((value)=>{
-                                return <div className="available-parking-lots">{value}</div>
-                            })}
-                        </div>
-                    </div>
+                    {/*<div className="column dashboard" style={{marginTop:'64px'}}>*/}
+                    {/*    <h3 className="heading">AVAILABLE PARKING LOTS</h3>*/}
+                    {/*    <div className="dashboard-parking-lots">*/}
+                    {/*        {availableParkingLots.map((value)=>{*/}
+                    {/*            return <div className="available-parking-lots">{value}</div>*/}
+                    {/*        })}*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    <AvailableParkingLots/>
                 </div>
                 <div>
                     <GoogleMaps/>
