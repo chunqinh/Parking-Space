@@ -27,6 +27,7 @@ function RouterSwitch(){
             </Route>
             <PrivateRoute path="/dashboard" exact component={UserDashboard}/>
             <PrivateRoute exact path="/user-profile" component={UserProfile} />
+
         </Switch>
     )
 }
