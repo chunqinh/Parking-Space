@@ -27,9 +27,7 @@ function RouterSwitch(){
             </Route>
             <PrivateRoute path="/dashboard" exact component={UserDashboard}/>
             <PrivateRoute exact path="/user-profile" component={UserProfile} />
-            <Route path="/free-parking-lots" exact>
-                <FreeLot/>
-            </Route>
+
         </Switch>
     )
 }
