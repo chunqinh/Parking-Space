@@ -10,15 +10,14 @@ function AccountDetails(){
 
     useEffect(()=>{
         getUserData();
-        sendCurrentUser()
     });
-    useEffect(()=>{
-        sendCurrentUser()
-    })
-    function sendCurrentUser(){
-        const user = { email: currentUser.email }
-        axios.post('http://localhost:5000/current-user',user).then(()=> console.log("User Sent"))
-    }
+    // useEffect(()=>{
+    //     sendCurrentUser()
+    // })
+    // function sendCurrentUser(){
+    //     const user = { email: currentUser.email }
+    //     axios.post('http://localhost:5000/current-user',user).then(()=> console.log("User Sent"))
+    // }
 
     function getUserData(){
         fetch('/user-profile')
