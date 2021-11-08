@@ -1,8 +1,41 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useAuth} from "../../context/AuthContext";
+import axios from 'axios';
 
 function AccountDetails(){
     const {currentUser} = useAuth();
+    const [firstname,setFirstName] = useState("");
+    const [lastname,setLastName] = useState("");
+    const [phone,setPhone] = useState("");
+
+    useEffect(()=>{
+        getUserData();
+    });
+    // useEffect(()=>{
+    //     sendCurrentUser()
+    // })
+    // function sendCurrentUser(){
+    //     const user = { email: currentUser.email }
+    //     axios.post('http://localhost:5000/current-user',user).then(()=> console.log("User Sent"))
+    // }
+
+    function getUserData(){
+        fetch('/user-profile')
+            .then(res => res.json())
+            .then(userData => {
+                for (let details in userData[0]){
+                    if(details === "firstname"){
+                        setFirstName(userData[0][details])
+                    }
+                    else if(details === "lastname"){
+                        setLastName(userData[0][details])
+                    }
+                    else if(details === "phonenumber"){
+                        setPhone(userData[0][details])
+                    }
+                }
+            })
+    }
     return(
         <div>
             <h2 className="heading">ACCOUNT OVERVIEW</h2>
@@ -10,11 +43,11 @@ function AccountDetails(){
                 <div className="row">
                     <div style={{marginRight:'32px'}}>
                         <h6 className="labels profile">FIRST NAME:</h6>
-                        <input type={"text"}/>
+                        <input type={"text"} value={firstname}/>
                     </div>
                     <div>
                         <h6 className="labels profile">LAST NAME:</h6>
-                        <input type={"text"}/>
+                        <input type={"text"} value={lastname}/>
                     </div>
                 </div>
 
@@ -25,7 +58,7 @@ function AccountDetails(){
                     </div>
                     <div>
                         <h6 className="labels profile">PHONE NUMBER:</h6>
-                        <input type={"text"}/>
+                        <input type={"text"} value={phone}/>
                     </div>
                 </div>
                 <div style={{marginTop:'48px', textAlign:'right'}}>
