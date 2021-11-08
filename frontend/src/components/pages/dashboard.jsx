@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import GoogleMaps from "../google-map-api/map";
 import AvailableParkingLots from "./parking-lots-tab";
 
@@ -25,6 +25,19 @@ function UserDashboard(){
     const [paid, setPaid] = useState(false);
     const [markers, setMarkers] = useState("available");
 
+    useEffect(()=>{
+        getParkingLotsData();
+    });
+
+    function getParkingLotsData(){
+        fetch('/dashboard')
+            .then(res => res.json())
+            .then(userData => {
+                for (let details in userData[0]){
+                    console.log(userData[0][details])
+                }
+            })
+    }
     function handleLots(setLots){
         if (setLots === "free"){
             setFree(!free);
