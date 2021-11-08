@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const port = process.env.REACT_APP_EXPRESS_PORT || 5000;
+const port = process.env.PORT || 5000;
 const path = require('path');
 require('dotenv').config({path: path.resolve(__dirname,'\.env')});
 const db = require('./database');
