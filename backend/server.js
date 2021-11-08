@@ -13,7 +13,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.use(
     cors({
-        origin: 'http://localhost:3000',
+        origin: 'https://parking-space-442.herokuapp.com/',
         credentials: true,
     })
 );
