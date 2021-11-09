@@ -8,7 +8,7 @@ server {
   }
 
   # Redirect requests made to /api
-  location /api/ {
+  location /api {
     proxy_pass https://parkapp-space-442-backend.herokuapp.com/;
   }
 }
