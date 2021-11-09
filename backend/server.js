@@ -8,6 +8,7 @@ const db = require('./database');
 const cors = require('cors')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
