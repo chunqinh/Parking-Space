@@ -1,15 +1,26 @@
-FROM node:15.8.0
+#FROM node:15.8.0
+#
+#ENV HOME /root
+#
+#WORKDIR /root
+#
+#COPY package.json /.
+#
+#RUN npm install
+#
+#COPY . .
+#
+#EXPOSE 5000
+#
+#CMD node server.js
+#
 
-ENV HOME /root
+FROM node:10
 
 WORKDIR /root
 
-COPY package.json /.
-
-RUN npm install
-
 COPY . .
 
-EXPOSE 5000
+EXPOSE $PORT
 
-CMD node server.js
+CMD [ "npm", "run", "start" ]

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Link, useHistory} from "react-router-dom";
 import {useState} from 'react';
 import {useAuth} from "../../context/AuthContext";
@@ -8,6 +8,7 @@ import closeMenu from '../icons/close_black_24dp.svg'
 import homeIcon from '../icons/home_black_24dp.svg'
 import userIcon from '../icons/user_icon.svg'
 import logoutIcon from '../icons/logout.svg'
+import axios from "axios";
 
 
 function Navigation(){

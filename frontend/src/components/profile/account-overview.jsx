@@ -36,7 +36,7 @@ function AccountDetails(){
                 }
             })
     }
-    return(
+     return(
         <div>
             <h2 className="heading">ACCOUNT OVERVIEW</h2>
             <form className="profile-user-details" style={{marginTop:'32px'}}>

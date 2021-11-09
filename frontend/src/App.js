@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {BrowserRouter} from "react-router-dom";
 import {Container} from "@mui/material";
 import Navigation from "./components/navigation/navigation-bar";
 import RouterSwitch from "./components/router-dom/routes";
-import AuthProvider from "./context/AuthContext";
+import AuthProvider, {useAuth} from "./context/AuthContext";
+import axios from "axios";
 
 
 function App() {
