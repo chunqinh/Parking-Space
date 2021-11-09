@@ -1,15 +1,41 @@
-FROM node:15.8.0
+#FROM node:15.8.0
+#
+#ENV HOME /root
+#
+#WORKDIR /root
+#
+#COPY package.json /.
+#
+#RUN npm install
+#
+#COPY . .
+#
+#EXPOSE 3000
+#
+#CMD npm start
 
-ENV HOME /root
+FROM nginx
 
-WORKDIR /root
+COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 
-COPY package.json /.
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
-RUN npm install
+RUN apt-get update
+
+RUN apt-get install curl -y
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+
+RUN bash nodesource_setup.sh
+
+RUN apt install nodejs -y
+
+WORKDIR /usr/src/app
 
 COPY . .
 
-EXPOSE 3000
+RUN npm ci
 
-CMD npm start
+RUN npm run build
+
+EXPOSE $PORT
