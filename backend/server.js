@@ -11,12 +11,18 @@ app.use(express.urlencoded({ extended: false }));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.use(
-    cors({
-        origin: 'https://parking-space-442.herokuapp.com/',
-        credentials: true,
-    })
-);
+// app.use(
+//     cors({
+//         origin: 'https://parking-space-442.herokuapp.com/',
+//         credentials: true,
+//     })
+// );
+
+
+app.get('/', function (req,res){
+    res.send("Hello World");
+})
+
 app.post('/current-user', function(req,res){
     console.log(req.body.email)
     db.currentUser = req.body.email
