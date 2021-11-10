@@ -10,6 +10,7 @@ import './static/profile.css'
 import './static/schedule.css'
 import App from './App';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
