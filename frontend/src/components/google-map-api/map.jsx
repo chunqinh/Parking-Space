@@ -6,26 +6,28 @@ const containerStyle = {
     height: '550px'
 };
 
-const centerMap = {
-    lat: 43.0008,
-    lng: -78.7890
-};
-
 const student_parking_lots = {
-    "Alumni A Lot" : [43.000716, -78.780223, true],
-    "Alumni B Lot" : [43.001901, -78.77871, false],
-    "Alumni C Lot" : [43.001909, -78.779976, true],
-    "Arena Lot" : [43.000857, -78.779418, false],
-    "Baird A Lot" : [42.998558, -78.784504, true],
-    "Cooke A Lot" : [42.999437, -78.793216 ,true],
-    "Cooke B Lot" : [42.998715, -78.793237, false],
-    "Fronczak Lot" : [43.002425, -78.791424, false],
-    "Hochstetter B Lot" : [42.99859, -78.790212, false],
-    "Jarvis A Lot" : [43.003721, -78.788517, false],
-    "Jarvis B Lot" : [43.003972, -78.786929, true],
-    "Ketter Lot" :  [43.002466, -78.788838, true],
-    "Park Hall Lot" : [42.999657, -78.788688, true]
+    "Alumni A Lot" : [43.000716, -78.780223, true,"https://goo.gl/maps/z4SbM4aJdfuB5HwV6"],
+    "Alumni B Lot" : [43.001901, -78.77871, true,"https://goo.gl/maps/s33e9WZaAFmrB4Rz7"],
+    "Alumni C Lot" : [43.001909, -78.779976, true,"https://goo.gl/maps/Camn2CzybZpLsUcU9"],
+    "Arena Lot" : [43.000857, -78.779418, true,"https://goo.gl/maps/5pTg8WhP4RhjSy8X7"],
+    "Baird A Lot" : [42.998558, -78.784504, true,"https://goo.gl/maps/45MivZVFVq22L2Fh9"],
+    "Bookstore Lot": [43.002333,-78.78534, false,"https://goo.gl/maps/87c2krGjP7XR92qQ7"],
+    "Cooke A Lot" : [42.999437, -78.793216 ,true,"https://goo.gl/maps/Pk3XbMH2YNsZXkLj9"],
+    "Cooke B Lot" : [42.998715, -78.793237, true,"https://goo.gl/maps/dyMAes4BksPJ8FdZ7"],
+    "Crofts Lot" : [42.994807, -78.797078, true,"https://goo.gl/maps/GKfubFAw3Gjcy8pi7"],
+    "Fronczak Lot" : [43.002425, -78.791424, true,"https://goo.gl/maps/VchkxMUY14nd4Nwq8"],
+    "Hochstetter B Lot" : [42.99859, -78.790212, false,"https://goo.gl/maps/bUJnnMTF1eFhpxRc7"],
+    "Jacobs B Lot": [42.998401,-78.7871, true,"https://goo.gl/maps/qGXTVax2x9d6YNFj9"],
+    "Jacobs C Lot": [42.998574,-78.786113, true,"https://goo.gl/maps/Ha3VeTLKDvSWJCTB9"],
+    "Jarvis A Lot" : [43.003721, -78.788517, false,"https://goo.gl/maps/DJrwMmxD3FNmkjr96"],
+    "Jarvis B Lot" : [43.003972, -78.786929, true,"https://goo.gl/maps/pcVVLd6PnjKf1hZa9"],
+    "Ketter Lot" :  [43.002466, -78.788838, true,"https://goo.gl/maps/6h7i4edeea1Jd2BKA"],
+    "Park Hall Lot" : [42.999657, -78.788688, true,"https://goo.gl/maps/5ja1ArexJ4VQQ3UX7"],
+    "Slee A Lot" : [42.99848, -78.783517, true,"https://goo.gl/maps/3eavzUUU53MVKbmt9"],
+    "Slee B Lot" : [42.999374, -78.783474, true,"https://goo.gl/maps/qDQPpq8UavPQi75q6"]
 }
+
 
 const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
 
@@ -39,13 +41,13 @@ const customStyle = [
     }
 ]
 
-function GoogleMaps({availables,frees,paids}:{availables:boolean,frees:boolean,paids:boolean}){
+function GoogleMaps({availables,frees,paids,nearbyFree,nearbyPaid}:{availables:boolean,frees:boolean,paids:boolean, nearbyFree:string,nearbyPaid:string}){
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API
     })
 
-
+    const [selectedCenter, setSelectedCenter] = useState(false);
     const [map, setMap] = React.useState(null)
 
     const onLoad = React.useCallback(function callback(map) {
@@ -71,7 +73,8 @@ function GoogleMaps({availables,frees,paids}:{availables:boolean,frees:boolean,p
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(success);
     })
-    // map.set('styles', customStyle);
+
+    console.log(student_parking_lots[nearbyFree])
 
     return isLoaded ? (
         <GoogleMap
@@ -87,6 +90,7 @@ function GoogleMaps({availables,frees,paids}:{availables:boolean,frees:boolean,p
                 currentPosition.lat &&
                 (
                     <Marker position={currentPosition}/>
+
                 )
             }
             {Object.entries(student_parking_lots).map((key,value)=>{
@@ -110,7 +114,61 @@ function GoogleMaps({availables,frees,paids}:{availables:boolean,frees:boolean,p
                 }
 
             })}
-            <Marker position={centerMap}/>
+            {
+
+                nearbyFree !== "" ? <Marker position={{lat: student_parking_lots[nearbyFree][0],
+                    lng:student_parking_lots[nearbyFree][1]}} onClick={() => {
+                        setSelectedCenter(nearbyFree);
+                    }}/>
+                :
+                nearbyPaid !== "" ? <Marker position={{lat: student_parking_lots[nearbyPaid][0],
+                lng: student_parking_lots[nearbyPaid][1]}} onClick={() => {
+                        setSelectedCenter(nearbyPaid);
+                    }}/>
+                :
+                    <></>
+            }
+            {
+                nearbyFree !== "" ? selectedCenter && (
+                    <InfoWindow
+                        onCloseClick={() => {
+                            setSelectedCenter(false);
+                        }}
+                    position={{
+                        lat: student_parking_lots[nearbyFree][0],
+                        lng: student_parking_lots[nearbyFree][1]
+                    }}
+                    >
+                        <div>
+                            <h3>{nearbyFree}</h3>
+                            <a href= {student_parking_lots[nearbyFree][3]} target={"_blank"}> Navigate Here</a>
+                        </div>
+
+                    </InfoWindow>
+                ) : <></>
+
+            }
+
+            {
+                nearbyPaid !== "" ? selectedCenter && (
+                    <InfoWindow
+                        onCloseClick={() => {
+                            setSelectedCenter(false);
+                        }}
+                        position={{
+                            lat: student_parking_lots[nearbyPaid][0],
+                            lng: student_parking_lots[nearbyPaid][1]
+                        }}
+                    >
+                        <div>
+                            <h3>{nearbyPaid}</h3>
+                            <a href= {student_parking_lots[nearbyPaid][3]} target={"_blank"}> Navigate Here</a>
+                        </div>
+
+                    </InfoWindow>
+                ) : <></>
+
+            }
         </GoogleMap>
     ) : <></>
 }
