@@ -26,6 +26,9 @@
     font-weight: 600;
     font-size: 12px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dashboard-buttons{
