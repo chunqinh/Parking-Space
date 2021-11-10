@@ -45,3 +45,8 @@
     background-color: #4a39ea;
     color:white;
 }
+
+.available-parking-lots a{
+    text-decoration: none;
+    color:unset;
+}
