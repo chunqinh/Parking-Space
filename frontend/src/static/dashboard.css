@@ -10,11 +10,11 @@
 }
 
 .dashboard-parking-lots{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-rows: 70px 70px 70px 70px;
+    grid-template-columns: 110px 110px 110px 110px 110px;
+    place-content: center;
     width:550px;
-    justify-content: center;
     margin-top: 12px;
 }
 

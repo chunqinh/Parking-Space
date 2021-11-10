@@ -32,7 +32,7 @@ function UserDashboard(){
     const [nearByLotFree, setNearByLotFree] = useState(Object.keys(parking)[0]);
     const [nearByLotPaid, setNearByLotPaid] = useState(Object.keys(parking)[0]);
 
-    // const [times, setTime] = useState(new Date().getMinutes());
+    const [times, setTime] = useState(new Date().toLocaleTimeString());
 
     const [currentPosition, setCurrentPosition] = useState({});
 
@@ -109,6 +109,7 @@ function UserDashboard(){
 
     useEffect(()=>{
         getParkingLotsData();
+        setInterval(getTime,1000);
     });
     function getParkingLotsData(){
         fetch('/dashboard')
@@ -134,8 +135,12 @@ function UserDashboard(){
         return 0;
     }
 
+    function getTime(){
+        const today = new Date();
+        const currentTime = today.toLocaleTimeString();
+        setTime(currentTime);
+    }
     const today = new Date();
-    const time = today.getHours() + ":" + today.getMinutes()
     const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
     return(
@@ -143,7 +148,7 @@ function UserDashboard(){
             <div className="row dashboard">
                 <div style={{textAlign:'center'}}>
                     <div className="column dashboard" >
-                        <h1 className="super-heading time" style={{lineHeight:'200px'}}>{time}</h1>
+                        <h1 className="super-heading time" >{times}</h1>
                         <h3 className="heading">{date}</h3>
                         {/*<a href={"/edit-time"} className="menu-links register" style={{borderRadius:'5px', width:'85px'}}>EDIT TIME</a>*/}
                     </div>
