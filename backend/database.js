@@ -14,7 +14,7 @@ const database_cred = new database_app({
     uri: process.env.REACT_APP_DB_URI
 });
 
-let currentUser = "";
+let currentUser = "prasoonn@buffalo.edu";
 
 const parking_lots = (request,response) => {
     database_cred.query('SELECT * FROM parkinglots', (error,results) =>
