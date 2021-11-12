@@ -6,6 +6,7 @@ require('dotenv').config({path: path.resolve(__dirname,'\.env')});
 const db = require('./database');
 const cors = require('cors')
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 
