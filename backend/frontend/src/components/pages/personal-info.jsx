@@ -1,23 +1,18 @@
 import React from 'react';
-import blob from '../icons/login-blob.svg';
+import PersonalInfoForm from "../form/personal-info-form";
+import blob from "../icons/login-blob.svg";
 
-
-
-import LoginForm from "../form/login";
-
-
-function Login(){
-
+function PersonalInfo(){
     return(
         <div>
             <div className="single-height-pages">
                 <div className="login">
                     <div>
-                        <LoginForm/>
+                        <PersonalInfoForm/>
                     </div>
                     <div className="single-height-blob">
                         <div style={{width:'400px', textAlign:'right'}}>
-                            <h1 className="super-heading">TROUBLE FINDING A SPOT?</h1>
+                            <h1 className="super-heading">FILL IN THE DETAILS.</h1>
                         </div>
                     </div>
                     <div className="absolute-blob">
@@ -36,4 +31,4 @@ function Login(){
     )
 }
 
-export default Login;
+export default PersonalInfo;

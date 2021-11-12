@@ -1,6 +1,7 @@
 import React, {useRef, useState} from "react";
 import { useAuth } from "../../context/AuthContext";
 import {Link, useHistory} from "react-router-dom";
+import axios from "axios";
 
 function RegisterForm(){
 
@@ -27,7 +28,7 @@ function RegisterForm(){
             setError("");
             setLoading(true);
             await register(usernameRef.current.value, passwordRef.current.value)
-            history.push('/dashboard')
+            history.push('/personal-info')
         } catch{
             setLoading(false);
             return setError("Failed to create an account")
