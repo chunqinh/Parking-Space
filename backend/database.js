@@ -1,4 +1,3 @@
-
 console.log(process.env.REACT_APP_DB_HOST);
 const database_app = require('pg').Pool
 const database_cred = new database_app({
@@ -26,6 +25,15 @@ const parking_lots = (request,response) => {
     })
 }
 
+const store_user_data = (data, cb) =>{
+    console.log(data, data['email'])
+    database_cred.query('INSERT INTO users(email,firstname,lastname,phonenumber) VALUES($1,$2,$3,$4)',[data['email'], data['firstName'],data['lastName'],data['phoneNumber'] ],(error) =>{
+        if(error){
+            throw error;
+        }
+    })
+}
+
 const get_user_data = (request,response) =>{
     database_cred.query('SELECT * FROM users WHERE email = $1',[currentUser],(error, results) => {
         if (error){
@@ -49,5 +57,6 @@ module.exports = {
     parking_lots,
     get_user_data,
     get_user_schedule,
+    store_user_data,
     currentUser
 }

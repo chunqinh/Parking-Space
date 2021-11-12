@@ -29,8 +29,9 @@ function PersonalInfoForm(){
                 .then( res => {
                     console.log(res);
                     console.log(res.data);
-                    history.push('/dashboard');
+
                 });
+            history.push('/dashboard');
 
         }catch{
             setLoading(false);

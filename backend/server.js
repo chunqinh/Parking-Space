@@ -1,4 +1,3 @@
-import routes from "./frontend/src/components/router-dom/routes";
 
 const express = require('express');
 const app = express();
@@ -12,16 +11,14 @@ app.use(cors({
     origin:"https://parkapp-space-442-backend.herokuapp.com/",
     credentials: true,
 }));
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('body-parser').json());
+app.use(require('body-parser').text());
+app.use(require('body-parser').raw());
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(routes);
-
-
-app.post('/personal-info', cors(), function(res,req){
-    req.body;
-    res.json(req.body).then(response => console.log(response));
-    console.log('data-received');
+app.post('/personal-info', function(res,req){
+    console.log('data-received:', res.body);
+    db.store_user_data(res.body,req);
 });
 
 app.get('/dashboard', cors(), db.parking_lots);
