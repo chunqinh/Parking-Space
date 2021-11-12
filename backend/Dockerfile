@@ -1,26 +1,28 @@
-#FROM node:15.8.0
-#
-#ENV HOME /root
-#
-#WORKDIR /root
-#
-#COPY package.json /.
-#
-#RUN npm install
-#
-#COPY . .
-#
-#EXPOSE 5000
-#
-#CMD node server.js
-#
+# PROD CONFIG
+FROM node as prod
 
-FROM node:10
+WORKDIR /app
 
-WORKDIR /root
+COPY package*.json ./
+
+RUN npm install
+
+WORKDIR /app/frontend
+
+COPY ./frontend/package*.json ./
+
+RUN npm install
+
+WORKDIR /app
 
 COPY . .
 
-EXPOSE $PORT
+WORKDIR /app/frontend
 
-CMD [ "npm", "run", "start" ]
+RUN npm run build
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+CMD [ "npm", "start" ]
