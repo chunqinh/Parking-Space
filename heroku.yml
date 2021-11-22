@@ -4,4 +4,4 @@ setup:
 
 build:
   docker:
-    web: frontend/Dockerfile
+    web: backend/Dockerfile
