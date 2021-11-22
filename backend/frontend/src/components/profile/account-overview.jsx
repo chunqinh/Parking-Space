@@ -16,7 +16,7 @@ function AccountDetails(){
     function getUserData(){
         auth.currentUser.getIdToken(true).then(function(idToken) {
             // Send token to your backend via HTTPS
-            axios.get("https://parkapp-space-442-backend.herokuapp.com/current-user-details", {
+            axios.get("https://parking-space-442.herokuapp.com/current-user-details", {
                 headers:{
                     Authorization : idToken
                 }})

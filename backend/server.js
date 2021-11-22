@@ -9,7 +9,8 @@ const cors = require('cors');
 
 
 app.use(cors({
-    origin:"https://parkapp-space-442-backend.herokuapp.com/",
+    origin:"https://parking-space-442.herokuapp.com/",
+    // origin:"http//localhost:5000/",
     credentials: true,
 }));
 
