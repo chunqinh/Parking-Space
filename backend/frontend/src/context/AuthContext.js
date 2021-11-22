@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {auth} from '../firebase';
+import axios from "axios";
 
 const AuthContext = React.createContext({});
 
@@ -32,7 +33,6 @@ function AuthProvider({children}){
         const unsuscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
             setLoading(false)
-
         })
         return unsuscribe
     }, [])

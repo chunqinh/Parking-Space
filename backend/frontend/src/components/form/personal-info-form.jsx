@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {useAuth} from "../../context/AuthContext";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
+import {auth} from "../../firebase";
 
 function PersonalInfoForm(){
     const {currentUser} = useAuth()
@@ -23,15 +24,19 @@ function PersonalInfoForm(){
                 lastName : lastNameRef.current.value,
                 phoneNumber : phoneNumberRef.current.value,
             }
-            console.log(userData)
+            auth.currentUser.getIdToken(true).then((idToken)=>{
+                axios.post("https://parkapp-space-442-backend.herokuapp.com/personal-info",userData,{
+                    headers:{
+                        Authorization: idToken
+                    }
+                })
+                    .then( res => {
+                        console.log(res);
+                        console.log(res.data);
 
-            axios.post("https://parkapp-space-442-backend.herokuapp.com/personal-info",userData)
-                .then( res => {
-                    console.log(res);
-                    console.log(res.data);
-
-                });
-            history.push('/dashboard');
+                    });
+                history.push('/dashboard');
+            })
 
         }catch{
             setLoading(false);
@@ -39,7 +44,7 @@ function PersonalInfoForm(){
         }
     }
 
-
+    console.log(auth.currentUser.getIdToken(true))
 
     return(
         <form className="profile-user-details" onSubmit={handleSubmit} >

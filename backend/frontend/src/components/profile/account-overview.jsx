@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useAuth} from "../../context/AuthContext";
 import axios from 'axios';
+import {auth} from "../../firebase";
 
 function AccountDetails(){
     const {currentUser} = useAuth();
@@ -8,9 +9,39 @@ function AccountDetails(){
     const [lastname,setLastName] = useState("");
     const [phone,setPhone] = useState("");
 
-    useEffect(()=>{
+    useEffect(() =>{
         getUserData();
-    });
+    })
+
+    function getUserData(){
+        auth.currentUser.getIdToken(true).then(function(idToken) {
+            // Send token to your backend via HTTPS
+            axios.get("https://parkapp-space-442-backend.herokuapp.com/current-user-details", {
+                headers:{
+                    Authorization : idToken
+                }})
+                .then(details=>details.data).then( userData =>{
+                    for (let details in userData[0]){
+                        if(details === "firstname"){
+                            setFirstName(userData[0][details])
+                        }
+                        else if(details === "lastname"){
+                            setLastName(userData[0][details])
+                        }
+                        else if(details === "phonenumber"){
+                            setPhone(userData[0][details])
+                        }
+                    }
+            })
+        }).catch(function(error) {
+            // Handle error
+        });
+    }
+
+
+    // useEffect(()=>{
+    //     getUserData();
+    // });
     // useEffect(()=>{
     //     sendCurrentUser()
     // })
@@ -19,23 +50,25 @@ function AccountDetails(){
     //     axios.post('http://localhost:5000/current-user',user).then(()=> console.log("User Sent"))
     // }
 
-    function getUserData(){
-        fetch('/user-profile')
-            .then(res => res.json())
-            .then(userData => {
-                for (let details in userData[0]){
-                    if(details === "firstname"){
-                        setFirstName(userData[0][details])
-                    }
-                    else if(details === "lastname"){
-                        setLastName(userData[0][details])
-                    }
-                    else if(details === "phonenumber"){
-                        setPhone(userData[0][details])
-                    }
-                }
-            })
-    }
+
+
+    // function getUserData(){
+    //     fetch('/user-profile')
+    //         .then(res => res.json())
+    //         .then(userData => {
+    //             for (let details in userData[0]){
+    //                 if(details === "firstname"){
+    //                     setFirstName(userData[0][details])
+    //                 }
+    //                 else if(details === "lastname"){
+    //                     setLastName(userData[0][details])
+    //                 }
+    //                 else if(details === "phonenumber"){
+    //                     setPhone(userData[0][details])
+    //                 }
+    //             }
+    //         })
+    // }
      return(
         <div>
             <h2 className="heading">ACCOUNT OVERVIEW</h2>
