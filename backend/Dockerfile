@@ -1,8 +1,19 @@
-FROM node:15.8.0
+# PROD CONFIG
+FROM node as prod
 
-ENV HOME /root
+WORKDIR /app
 
-WORKDIR /root
+COPY package*.json ./
+
+RUN npm install
+
+WORKDIR /app/frontend
+
+COPY ./frontend/package*.json ./
+
+RUN npm install
+
+WORKDIR /app
 
 COPY package.json /.
 
@@ -10,17 +21,12 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8081
+WORKDIR /app/frontend
 
-CMD
+RUN npm run build
 
-#
-#FROM node:10
-#
-#WORKDIR /root
-#
-#COPY . .
-#
-#EXPOSE $PORT
-#
-#CMD [ "npm", "run", "start" ]
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+CMD [ "npm", "start" ]

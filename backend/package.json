@@ -4,17 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "frontend": "cd frontend && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "frontend": "npm run start --prefix frontend",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "firebase-admin": "^10.0.0",
     "path": "^0.12.7",
-    "pg": "^8.7.1",
-    "dotenv": "^10.0.0"
+    "pg": "^8.7.1"
   },
   "devDependencies": {
     "cors": "^2.8.5"
