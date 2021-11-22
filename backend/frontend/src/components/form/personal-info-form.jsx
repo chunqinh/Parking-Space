@@ -6,7 +6,7 @@ import {auth} from "../../firebase";
 
 function PersonalInfoForm(){
     const {currentUser} = useAuth()
-    const[loading, setLoading] =  useState(false);
+    const [loading, setLoading] =  useState(false);
     const[error, setError] =  useState('');
     const history = useHistory();
 

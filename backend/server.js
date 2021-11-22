@@ -42,11 +42,8 @@ app.post('/personal-info', function(res,req){
         })
 });
 
-app.get('/dashboard', cors(), db.parking_lots);
-app.get('/user-profile',cors(),function (res,req){
-    console.log(uid)
-    db.get_user_data(res.body,req,uid)
-});
+app.get('/dashboard-details', cors(), db.parking_lots);
+
 app.get('/user-profile-schedule',cors(), db.get_user_schedule);
 
 app.use(express.static('frontend/build'));
