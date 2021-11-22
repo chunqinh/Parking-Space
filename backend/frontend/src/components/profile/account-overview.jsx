@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useAuth} from "../../context/AuthContext";
 import axios from 'axios';
 import {auth} from "../../firebase";
+import {useHistory} from "react-router-dom";
 
 function AccountDetails(){
     const {currentUser} = useAuth();
@@ -10,6 +11,8 @@ function AccountDetails(){
     const [lastname,setLastName] = useState("");
     const [phone,setPhone] = useState("");
     const[error, setError] =  useState('');
+    const history = useHistory();
+
 
     useEffect(() =>{
         getUserData();
@@ -50,7 +53,7 @@ function AccountDetails(){
                 phoneNumber : phone,
             }
             auth.currentUser.getIdToken(true).then((idToken)=>{
-                axios.post("https://parking-space-442.herokuapp.com/personal-info",userData,{
+                axios.post("https://parking-space-442.herokuapp.com/personal-info-update",userData,{
                     headers:{
                         Authorization: idToken
                     }
@@ -60,6 +63,7 @@ function AccountDetails(){
                         console.log(res.data);
 
                     });
+                history.push('/user-profile');
             })
 
         }catch{

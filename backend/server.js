@@ -42,6 +42,17 @@ app.post('/personal-info', function(res,req){
         })
 });
 
+app.post('/personal-info-update', function(res,req){
+    const authHeader = res.get('authorization');
+    firebaseAdmin.admin.auth()
+        .verifyIdToken(authHeader)
+        .then((decodeToken)=>{
+            const uid = decodeToken.uid;
+            console.log(uid);
+            db.update_user_data(res.body,req,uid);
+        })
+});
+
 app.get('/dashboard-details', cors(), db.parking_lots);
 
 app.get('/user-profile-schedule',cors(), db.get_user_schedule);

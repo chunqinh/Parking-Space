@@ -52,9 +52,18 @@ const get_user_schedule = (request,response) => {
     })
 }
 
+const update_user_data = (data, cb, uid) =>{
+    database_cred.query('UPDATE users SET firstname = $1, lastname = $2, phonenumber = $3 WHERE userid = $4', [data['firstName'],data['lastName'], data['phoneNumber'], uid], (error) =>{
+        if(error){
+            throw error;
+        }
+    })
+}
+
 module.exports = {
     parking_lots,
     get_user_data,
     get_user_schedule,
-    store_user_data
+    store_user_data,
+    update_user_data
 }
