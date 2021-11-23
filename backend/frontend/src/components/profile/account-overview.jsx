@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useAuth} from "../../context/AuthContext";
 import axios from 'axios';
 import {auth} from "../../firebase";
@@ -10,9 +10,11 @@ function AccountDetails(){
     const [firstname,setFirstName] = useState("");
     const [lastname,setLastName] = useState("");
     const [phone,setPhone] = useState("");
+    const firstnameRef = useRef();
+    const lastnameRef = useRef();
+    const phonenumberRef = useRef();
     const[error, setError] =  useState('');
-    const history = useHistory();
-
+    const[success, setSuccess] = useState('');
 
     useEffect(() =>{
         getUserData();
@@ -48,9 +50,9 @@ function AccountDetails(){
         try{
             setLoading(true);
             const userData = {
-                firstName : firstname,
-                lastName : lastname,
-                phoneNumber : phone,
+                firstName : firstnameRef.current.value === '' ? firstname : firstnameRef.current.value,
+                lastName : lastnameRef.current.value === '' ? lastname : lastnameRef.current.value,
+                phoneNumber : phonenumberRef.current.value === '' ? phone : phonenumberRef.current.value
             }
             auth.currentUser.getIdToken(true).then((idToken)=>{
                 axios.post("https://parking-space-442.herokuapp.com/personal-info-update",userData,{
@@ -63,7 +65,8 @@ function AccountDetails(){
                         console.log(res.data);
 
                     });
-                history.push('/user-profile');
+                setTimeout(function () { window.location.reload(); }, 5)
+                setSuccess("Form Updated Successfully");
             })
 
         }catch{
@@ -79,11 +82,11 @@ function AccountDetails(){
                 <div className="row">
                     <div style={{marginRight:'32px'}}>
                         <h6 className="labels profile">FIRST NAME:</h6>
-                        <input type={"text"} value={firstname} onChange={(e) => {setFirstName(e.target.value)}}/>
+                        <input type={"text"} placeholder={firstname} ref={firstnameRef} />
                     </div>
                     <div>
                         <h6 className="labels profile">LAST NAME:</h6>
-                        <input type={"text"} value={lastname} onChange={(e)=>{setLastName(e.target.value)}}/>
+                        <input type={"text"} placeholder={lastname} ref={lastnameRef}/>
                     </div>
                 </div>
 
@@ -94,13 +97,17 @@ function AccountDetails(){
                     </div>
                     <div>
                         <h6 className="labels profile">PHONE NUMBER:</h6>
-                        <input type={"text"} value={phone} onChange={(e)=>{setPhone(e.target.value)}}/>
+                        <input type={"text"} placeholder={phone} ref={phonenumberRef}/>
                     </div>
                 </div>
                 <div style={{marginTop:'48px', textAlign:'right'}}>
                     <button disabled={loading} type={"submit"}  className="login-button profile">SAVE CHANGES</button>
                 </div>
             </form>
+            <div style={{textAlign:'center'}}>
+                {error && <h6 className="error">{error}</h6>}
+                {success && <h6 className="error">{success}</h6>}
+            </div>
         </div>
     )
 }

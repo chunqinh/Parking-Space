@@ -49,8 +49,10 @@ app.post('/personal-info-update', function(res,req){
         .then((decodeToken)=>{
             const uid = decodeToken.uid;
             console.log(uid);
+            console.log(res.body);
             db.update_user_data(res.body,req,uid);
         })
+    req.send(res.body);
 });
 
 app.get('/dashboard-details', cors(), db.parking_lots);
