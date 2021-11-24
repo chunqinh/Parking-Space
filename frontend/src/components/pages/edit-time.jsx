@@ -55,6 +55,13 @@ function EditTime(){
            setMinuteOnes(minuteOnes-=1);
        }
     }
+    const setTozero = () => { 
+        setHourTens(hoursTens = 0);
+        setHourOnes(hoursOnes = 0);
+        setMinuteTens(minuteTens = 0);
+        setMinuteOnes(minuteOnes = 0);
+
+    }
 
     return(
         <div className="single-height-pages">
@@ -80,6 +87,10 @@ function EditTime(){
                         <button className="edit-time-buttons add" onClick={addMin}> + </button>
                         <h1 className="super-heading time">{minuteTens} {minuteOnes}</h1>
                         <button className="edit-time-buttons add" onClick={subtractMinutes}> - </button>
+                        
+                    </div>
+                    <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
+                    <button className="edit-time-buttons" onClick={setTozero}> Set TO 00:00 </button>
                     </div>
                 </div>
             </div>
