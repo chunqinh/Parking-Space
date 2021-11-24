@@ -1,5 +1,10 @@
 import React, {useState} from "react";
 
+
+import { useEffect } from 'react';
+
+
+
 function EditTime(){
 
     let [minuteOnes, setMinuteOnes] = useState(9);
@@ -56,7 +61,49 @@ function EditTime(){
        }
     }
 
+    const startTimer = () => {
+      const interval = setInterval(() => {
+        setMinuteOnes(minuteOnes-=1);
+        if (minuteOnes < 0){
+          console.log("WHAAAA")
+          // clearInterval(interval);
+          setMinuteOnes(Math.abs(minuteOnes = 59));
+          setHourOnes(hoursOnes-=1)
+          // setMinuteTens(minuteTens-=1);
+        }
+
+      }, 1000);
+    }
+
+    const defaultRemainingTime = {
+      seconds: '00',
+      minutes: '00',
+      hours: '00',
+      days: '00'
+    }
+
+    // const Countdowntimer = ({countdownTimestampMs}) => {
+    //   const [remainingTime, setRemainingTime] = useState(defaultRemainingTime)
+    //
+    //   useEffect(() => {
+    //     const intervalId =setInterval(() => {
+    //         updateRemainingTime({countdownTimestampMs});
+    //     }, 1000 );
+    //     return () => clearInterval(intervalId);
+    //   },[{countdownTimestampMs}])
+    //   function updateRemainingTime(countdown){
+    //     console.log("Hello World")
+    //   }
+    //
+    // }
+
+
+
+
+
+
     return(
+
         <div className="single-height-pages">
             <div className="edit-time">
                 <div style={{marginTop:'50px', textAlign:'center'}}>
@@ -72,6 +119,8 @@ function EditTime(){
                         <button className="edit-time-buttons add" onClick={addHours}> + </button>
                         <h1 className="super-heading time">{hoursTens} {hoursOnes} </h1>
                         <button className="edit-time-buttons add" onClick={subtractHours}> - </button>
+                        <button className="edit-time-buttons add" onClick={startTimer}> Start Timer </button>
+
                     </div>
                     <div>
                         <h1 className="super-heading time" style={{transform:'translateY(-30px)'}}>:</h1>
@@ -84,8 +133,10 @@ function EditTime(){
                 </div>
             </div>
 
+
+
         </div>
-          
+
     )
 
 }
