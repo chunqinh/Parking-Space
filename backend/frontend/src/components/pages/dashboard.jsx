@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import GoogleMaps from "../google-map-api/map";
+import axios from "axios";
+import ParkingLotsTab from "./parking-lots-tab";
+
+import closeButton from "../icons/close_black_24dp.svg";
+import {auth} from "../../firebase";
 
 
 const parking = {
@@ -28,17 +33,145 @@ const parking = {
     "Slee B Lot" : [42.999374, -78.783474, true,"https://goo.gl/maps/qDQPpq8UavPQi75q6",false]
 }
 
+
 function UserDashboard(){
-    const [available, setAvailable] = useState(true);
-    const [free, setFree] = useState(false);
+    const [parkingLots, setParkingLots] = useState([]);
+    const [userParked, setUserParked] = useState(false);
+    const [userStartTime, setUserStartTime] = useState('');
+    const [userEndTime, setUserEndTime] = useState('');
+    const [userParkedLot, setUserParkedLot] = useState('');
+    const [carTimer,setTimer] = useState('');
+    const [loading, setLoading] =  useState(false);
+
+    useEffect(()=>{
+        getParkingLots();
+
+        auth.currentUser.getIdToken(true).then(function(idToken) {
+            // Send token to your backend via HTTPS
+            axios.get("https://parking-space-442.herokuapp.com/current-user-details", {
+                headers:{
+                    Authorization : idToken
+                }})
+                .then(details=>details.data).then( userData =>{
+                for (let details in userData[0]){
+                    if(details === "parked"){
+                        setUserParked(userData[0][details])
+                    }
+                    else if(details === "starttimer"){
+                        setUserStartTime(userData[0][details])
+                    }
+                    else if(details === "endtimer"){
+                        setUserEndTime(userData[0][details])
+                    }
+                    else if(details === "parkinglot"){
+                        setUserParkedLot(userData[0][details])
+                    }
+                }
+            })
+        }).catch(function(error) {
+            // Handle error
+        });
+
+    }, [])
+
+    function getParkingLots(){
+        axios.get('https://parking-space-442.herokuapp.com/get-parking-lots').then(parking=>parking.data).then(parkinglots =>{
+            setParkingLots(parkinglots);
+        })
+    }
+
+    useEffect(()=>{
+        setInterval(timer,1000);
+    })
+
+    function timer(){
+        const now = new Date();
+        const now_time = now.toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit', hour12: false})
+        if(userEndTime !== ''){
+            const split_userEndTime = userEndTime.split(':')
+            const endTime = (parseInt(split_userEndTime[0]) * 60) + (parseInt(split_userEndTime[1]));
+            const split_startTime = now_time.split(':')
+            const startTime = (parseInt(split_startTime[0]) * 60) + (parseInt(split_startTime[1]));
+            if (startTime > endTime){
+                setTimer('TIME UP');
+            }
+            else{
+                let difference = endTime - startTime;
+                const minutes = difference % 60;
+                const hours = (difference-minutes) / 60;
+                let timerString = ''
+                if (minutes.toString().length === 1){
+                    if(hours.toString().length === 1){
+                        timerString = '0' + hours.toString() + ':' + '0' + minutes.toString()
+                        return setTimer(timerString);
+                    }
+                    timerString = hours.toString() + ':' + '0' + minutes.toString()
+                    return setTimer(timerString);
+                }
+                else if(hours.toString().length === 1){
+                    timerString = '0' + hours.toString() + ':' + minutes.toString()
+                    return setTimer(timerString);
+                }
+                else{
+                    timerString = hours.toString() + ':' + minutes.toString()
+                    return setTimer(timerString);
+                }
+            }
+        }
+    }
+
+    function handleUserLeaving(e){
+        e.preventDefault();
+        try{
+            setLoading(true);
+            const parkingData = {
+                parkingLotName : userParkedLot,
+            }
+            auth.currentUser.getIdToken(true).then((idToken)=>{
+                axios.post("https://parking-space-442.herokuapp.com/user-leaving",parkingData,{
+                    headers:{
+                        Authorization: idToken
+                    }
+                })
+                    .then( res => {
+                        console.log(res);
+                        console.log(res.data);
+
+                    });
+                setTimeout(function () { window.location.reload(); }, 5)
+            })
+
+        }catch{
+            setLoading(false);
+            return console.log("Something wasn't right")
+        }
+    }
+
+    //Filter Tabs for Parking Lots
+    const [free, setFree] = useState(true);
     const [paid, setPaid] = useState(false);
     const [faculty, setFaculty] = useState(false);
 
+    //For Parking Side Tabs
+    const [parkingTab, setParkingTab] = useState(false);
+    const [parkingTabName, setParkingTabName] = useState('');
+    const [parkingTabLink, setParkingTabLink] = useState('');
+    const [parkingTabAvailableSpots, setParkingTabAvailableSpots] = useState(0);
+
+    function handleParkingTab(name,link,spotsAvailable){
+        setParkingTab(!parkingTab);
+        setParkingTabName(name);
+        setParkingTabLink(link);
+        setParkingTabAvailableSpots(spotsAvailable);
+    }
+
+    //For Nearest Parking Lot
     const [nearByLotFree, setNearByLotFree] = useState(Object.keys(parking)[0]);
     const [nearByLotPaid, setNearByLotPaid] = useState(Object.keys(parking)[0]);
     const [nearByFacultyLot, setNearByFacultyLot] = useState(Object.keys(parking)[0]);
 
-    const [times, setTime] = useState(new Date().toLocaleTimeString());
+
+    const [times, setTime] = useState(new Date().toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit'}));
 
     const [currentPosition, setCurrentPosition] = useState({});
 
@@ -50,14 +183,12 @@ function UserDashboard(){
         setCurrentPosition(currentPosition);
     };
 
-
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(success);
         findNearFreeLots(free,paid,faculty)
     })
 
     function findNearFreeLots(free,paid,faculty){
-        console.log(faculty);
         let distance = {};
         for(let [keys,values] of Object.entries(parking)){
             if(free){
@@ -117,27 +248,28 @@ function UserDashboard(){
     }
 
     useEffect(()=>{
-        setInterval(getTime,1000);
+        setInterval(getTime,60000);
     });
+
+
 
     function handleLots(setLots){
         if (setLots === "free"){
             setFree(!free);
+            setPaid(false);
             setFaculty(false);
         }
         else if (setLots === "paid"){
             setPaid(!paid);
+            setFree(false)
             setFaculty(false);
         }
         else if(setLots === "faculty"){
             setFaculty(!faculty);
-
-            setAvailable(false);
             setPaid(false);
             setFree(false);
         }
         else{
-            setAvailable(!available);
             setFaculty(false);
         }
 
@@ -146,7 +278,7 @@ function UserDashboard(){
 
     function getTime(){
         const today = new Date();
-        const currentTime = today.toLocaleTimeString();
+        let currentTime = today.toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit', hour12:false});
         setTime(currentTime);
     }
     const today = new Date();
@@ -156,103 +288,91 @@ function UserDashboard(){
         <div className="single-height-pages">
             <div className="row dashboard">
                 <div style={{textAlign:'center'}}>
-                    <div className="column dashboard" >
-                        <h1 className="super-heading time" >{times}</h1>
-                        <h3 className="heading">{date}</h3>
-                        {/*<a href={"/edit-time"} className="menu-links register" style={{borderRadius:'5px', width:'85px'}}>EDIT TIME</a>*/}
-                    </div>
-                    {/*<AvailableParkingLots/>*/}
-                    <div>
-                        <div>
-                            <button onClick={()=>handleLots("available")} className={available ? "dashboard-buttons active" : "dashboard-buttons"}>Available Lots</button>
-                            <button onClick={()=>handleLots("free")} className={free ? "dashboard-buttons active" : "dashboard-buttons"}>Free Lots</button>
-                            <button onClick={()=>handleLots("paid")} className={paid ? "dashboard-buttons active" : "dashboard-buttons"}>Paid Lots</button>
-                            <button onClick={()=>handleLots("faculty")} className={faculty ? "dashboard-buttons active" : "dashboard-buttons"}>Faculty Lots</button>
-                        </div>
-                        <div>
-                            {available || free || paid ?
-                                !free && available && paid ?
-                                    <div className="dashboard-parking-lots">
-                                        {Object.entries(parking).map((key,value)=>{
-                                            if (!key[1][2] && !key[1][4]){
-                                                return (
-                                                    <div className="available-parking-lots">
-                                                        <a href={key[1][3]} target={"_blank"}>
-                                                            {key[0]}
-                                                        </a>
-                                                    </div>
-                                                )
-                                            }
-                                        })}
-                                    </div>
-                                    : !paid && available && free ?
-                                    <div className="dashboard-parking-lots">
-                                        {Object.entries(parking).map((key,value)=>{
-                                            if (key[1][2] && !key[1][4]){
-                                                return (<div className="available-parking-lots">
-                                                    <a href={key[1][3]} target={"_blank"}>
-                                                        {key[0]}
-                                                    </a>
-                                                </div>)
-                                            }
-                                        })}
-                                    </div>
-                                    : paid && !free && !available ?
-                                        <div className="dashboard-parking-lots">
-                                            {Object.entries(parking).map((key,value)=>{
-                                                if (!key[1][2] && !key[1][4]){
-                                                    return (<div className="available-parking-lots">
-                                                        <a href={key[1][3]} target={"_blank"}>
-                                                            {key[0]}
-                                                        </a>
-                                                    </div>)
-                                                }
-                                            })}
-                                        </div>
-                                        : free && !paid && !available ?
-                                            <div className="dashboard-parking-lots">
-                                                {Object.entries(parking).map((key,value)=>{
-                                                    if (key[1][2] && !key[1][4]){
-                                                        return (<div className="available-parking-lots">
-                                                            <a href={key[1][3]} target={"_blank"}>
-                                                                {key[0]}
-                                                            </a>
-                                                        </div>)
+                    {
+                        userParked ?
+                            <div className="column dashboard">
+                                <h1 className="super-heading time">{carTimer}</h1>
+                                <h3 className="heading">{date}</h3>
+                                {/*<a href={"/edit-time"} className="menu-links register" style={{borderRadius:'5px', width:'85px'}}>EDIT TIME</a>*/}
+                                <div>
+                                    CAR IS PARKED IN <h3>{userParkedLot}</h3>
+                                    <form onSubmit={handleUserLeaving}>
+                                        <button disabled={loading} type={"submit"} className="login-button profile" style={{marginTop:'24px'}} > LEAVING? </button>
+                                    </form>
+                                </div>
+                            </div>
+                            :
+                            <div>
+                                <div className="column dashboard" >
+                                    <h1 className="super-heading time" >{times}</h1>
+                                    <h3 className="heading">{date}</h3>
+                                </div>
+                                <div>
+                                    {/*<button onClick={()=>handleLots("available")} className={available ? "dashboard-buttons active" : "dashboard-buttons"}>Available Lots</button>*/}
+                                    <button onClick={()=>handleLots("free")} className={free ? "dashboard-buttons active" : "dashboard-buttons"}>Free Lots</button>
+                                    <button onClick={()=>handleLots("paid")} className={paid ? "dashboard-buttons active" : "dashboard-buttons"}>Paid Lots</button>
+                                    <button onClick={()=>handleLots("faculty")} className={faculty ? "dashboard-buttons active" : "dashboard-buttons"}>Faculty Lots</button>
+                                </div>
+                                { parkingLots ?
+                                    <div>
+                                        {
+                                            paid ?
+                                                <div className="dashboard-parking-lots">
+                                                    {parkingLots.map(data=>{
+                                                        if(data['paid'] && data['available'] > 0){
+                                                            return(
+                                                                <div className="available-parking-lots">
+                                                                    <p onClick={() => handleParkingTab(data['name'],data['link'],data['available'])}>
+                                                                        {data['name']}
+                                                                    </p>
+                                                                </div>
+                                                            )
+                                                        }
+                                                    })
                                                     }
-                                                })}
-                                            </div>
-                                            : <div className="dashboard-parking-lots">
-                                                {Object.entries(parking).map((key,value)=>{
-                                                    if(!key[1][4]){
-                                                        return (<div className="available-parking-lots">
-                                                            <a href={key[1][3]} target={"_blank"}>
-                                                                {key[0]}
-                                                            </a>
-                                                        </div>)
+                                                </div> : <></>
+                                        }
+                                        {
+                                            free ?
+                                                <div className="dashboard-parking-lots">
+                                                    {parkingLots.map(data=>{
+                                                        if(data['free'] && data['available'] > 0){
+                                                            return(
+                                                                <div className="available-parking-lots">
+                                                                    <p onClick={() => handleParkingTab(data['name'],data['link'],data['available'])}>
+                                                                        {data['name']}
+                                                                    </p>
+                                                                </div>
+                                                            )
+                                                        }
+                                                    })
                                                     }
+                                                </div> : <></>
+                                        }
+                                        {
+                                            faculty ?
+                                                <div className="dashboard-parking-lots">
+                                                    {parkingLots.map(data=>{
+                                                        if(data['faculty'] && data['available'] > 0){
+                                                            return(
+                                                                <div className="available-parking-lots">
+                                                                    <p onClick={() => handleParkingTab(data['name'],data['link'],data['available'])}>
+                                                                        {data['name']}
+                                                                    </p>
+                                                                </div>
+                                                            )
+                                                        }
+                                                    })
+                                                    }
+                                                </div> : <></>
+                                        }
+                                    </div>
+                                    :
+                                    <></>
+                                }
 
-
-                                                })}
-                                            </div>
-                                : <div/>
-                            }
-                            {
-                                faculty ?
-                                <div className="dashboard-parking-lots">
-                                    {Object.entries(parking).map((key,value)=>{
-                                        if(key[1][4]){
-                                        console.log(key[1][4])
-                                        return (<div className="available-parking-lots">
-                                        <a href={key[1][3]} target={"_blank"}>
-                                    {key[0]}
-                                        </a>
-                                        </div>)
-                                    }
-                                    })}
-                                </div> : <></>
-                            }
-                        </div>
-                    </div>
+                            </div>
+                    }
                 </div>
                 <div>
                     {
@@ -262,7 +382,7 @@ function UserDashboard(){
                         paid && !free && !faculty?
                             <GoogleMaps frees={false} availables={true} paids={true} faculty={false} nearbyFree={""} nearbyPaid={nearByLotPaid} nearbyFaculty={""} />
                         :
-                        faculty && !free && !paid && !available ?
+                        faculty && !free && !paid ?
                             <GoogleMaps frees={false} availables={false} paids={false} faculty={true} nearbyFree={""} nearbyPaid={""} nearbyFaculty={nearByFacultyLot} />
                         :
                         !faculty &&
@@ -271,6 +391,18 @@ function UserDashboard(){
 
                 </div>
             </div>
+            { parkingTab ?
+                (<div className="dashboard-parking-background">
+                        <div className="dashboard-parking-box">
+                            <div style={{textAlign:'right', margin:'24px', cursor:'pointer'}}>
+                                <img src={closeButton} onClick={() => setParkingTab(!parkingTab)} alt={"Close Icon"}/>
+                                <ParkingLotsTab name={parkingTabName} link={parkingTabLink} spotsLeft={parkingTabAvailableSpots}/>
+                            </div>
+                        </div>
+                    </div>)
+                :
+                <></>
+            }
         </div>
     )
 }

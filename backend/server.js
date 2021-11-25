@@ -55,7 +55,32 @@ app.post('/personal-info-update', function(res,req){
     req.send(res.body);
 });
 
-app.get('/dashboard-details', cors(), db.parking_lots);
+app.post('/user-parked', function(req,res){
+    const authHeader = req.get('authorization');
+    firebaseAdmin.admin.auth()
+        .verifyIdToken(authHeader)
+        .then((decodeToken)=>{
+            const uid = decodeToken.uid;
+            console.log(req.body);
+            db.update_parking_lot(req.body,res);
+            db.user_parked(req.body,res,uid);
+        })
+    res.send(req.body);
+})
+
+app.post('/user-leaving', function(res,req){
+    const authHeader = res.get('authorization');
+    firebaseAdmin.admin.auth()
+        .verifyIdToken(authHeader)
+        .then((decodeToken)=>{
+            uid = decodeToken.uid;
+            db.user_leaving_parking_spot(res.body,req,uid);
+            db.update_parking_lot_left(res.body,req)
+        })
+    req.send(res.body);
+});
+
+app.get('/get-parking-lots', cors(), db.parking_lots);
 
 app.get('/user-profile-schedule',cors(), db.get_user_schedule);
 

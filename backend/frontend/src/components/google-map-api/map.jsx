@@ -78,8 +78,6 @@ function GoogleMaps({availables,frees,paids,nearbyFree,nearbyPaid,nearbyFaculty,
         navigator.geolocation.getCurrentPosition(success);
     })
 
-    console.log(student_parking_lots[nearbyFree])
-
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}

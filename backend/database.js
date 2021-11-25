@@ -26,7 +26,7 @@ const parking_lots = (request,response) => {
 
 const store_user_data = (data, cb,uid) =>{
     console.log(data,uid)
-    database_cred.query('INSERT INTO users(email,firstname,lastname,phonenumber,userid) VALUES($1,$2,$3,$4,$5)',[data['email'], data['firstName'],data['lastName'],data['phoneNumber'], uid],(error) =>{
+    database_cred.query('INSERT INTO users(email,firstname,lastname,phonenumber,userid,parked) VALUES($1,$2,$3,$4,$5,$6)',[data['email'], data['firstName'],data['lastName'],data['phoneNumber'], uid,false],(error) =>{
         if(error){
             throw error;
         }
@@ -60,8 +60,44 @@ const update_user_data = (data, cb, uid) =>{
     })
 }
 
+const update_parking_lot = (data,cb) => {
+    database_cred.query('UPDATE parkinglots SET available = available - 1 WHERE name = $1 AND available > 0;',[data['parkingLotName']], (error) =>{
+        if(error){
+            throw error;
+        }
+    })
+}
+
+const update_parking_lot_left = (data,cb) => {
+    database_cred.query('UPDATE parkinglots SET available = available + 1 WHERE name = $1;',[data['parkingLotName']], (error) =>{
+        if(error){
+            throw error;
+        }
+    })
+}
+
+const user_parked = (data,cb,uid) => {
+    database_cred.query('UPDATE users SET parked = $1, starttimer = $2, endtimer = $3, parkinglot = $4 WHERE userid = $5', [true,data['startTime'],data['endTime'], data['parkingLotName'], uid], (error) => {
+        if(error){
+            throw error;
+        }
+    })
+}
+
+const user_leaving_parking_spot = (data,cb,uid) => {
+    database_cred.query('UPDATE users SET parked = $1, starttimer = $2, endtimer = $3, parkinglot = $4 WHERE userid = $5', [false,null,null, null, uid], (error) => {
+        if(error){
+            throw error;
+        }
+    })
+}
+
 module.exports = {
     parking_lots,
+    update_parking_lot,
+    update_parking_lot_left,
+    user_parked,
+    user_leaving_parking_spot,
     get_user_data,
     get_user_schedule,
     store_user_data,

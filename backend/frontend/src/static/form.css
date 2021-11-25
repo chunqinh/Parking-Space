@@ -4,7 +4,7 @@
     width:100%;
 }
 
-input[type='text'], input[type='password'], input[type='email']{
+input[type='text'], input[type='password'], input[type='email'], input[type="time"]{
     padding:16px 24px;
     outline:none;
     border:1px solid rgba(0,0,0,0.5);
@@ -16,8 +16,7 @@ input[type='text'], input[type='password'], input[type='email']{
 }
 
 .profile-user-details input[type='text'], .profile-user-details input[type="email"], .profile-user-details input[type="password"]{
-    border: unset;
-    border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: unset;
     width:250px;
     margin-left: 0;
