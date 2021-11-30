@@ -3,7 +3,7 @@ import {auth} from "../../firebase";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 
-function ParkingLotsTab({name,link,spotsLeft}:{name:string,link:string,spotsLeft:number}){
+function ParkingLotsTab({name,links,spotsLeft}:{name:string,links:string,spotsLeft:number}){
 
     const [loading, setLoading] =  useState(false);
     const[error, setError] =  useState('');
@@ -33,6 +33,7 @@ function ParkingLotsTab({name,link,spotsLeft}:{name:string,link:string,spotsLeft
                         console.log(res.data);
 
                     });
+                window.open(links,'_blank')
                 setTimeout(function () { window.location.reload(); }, 5)
             })
 
