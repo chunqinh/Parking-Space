@@ -84,6 +84,14 @@ const user_parked = (data,cb,uid) => {
     })
 }
 
+const user_time_up = (data,cb,uid) =>{
+    database_cred.query('UPDATE users SET endtimer = $1 WHERE userid = $2', [data['endTime'], uid], (error) => {
+        if (error) {
+            throw error;
+        }
+    })
+}
+
 const user_leaving_parking_spot = (data,cb,uid) => {
     database_cred.query('UPDATE users SET parked = $1, starttimer = $2, endtimer = $3, parkinglot = $4 WHERE userid = $5', [false,null,null, null, uid], (error) => {
         if(error){
@@ -94,6 +102,7 @@ const user_leaving_parking_spot = (data,cb,uid) => {
 
 module.exports = {
     parking_lots,
+    user_time_up,
     update_parking_lot,
     update_parking_lot_left,
     user_parked,

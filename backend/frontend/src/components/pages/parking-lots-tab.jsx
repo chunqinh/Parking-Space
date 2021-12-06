@@ -3,11 +3,17 @@ import {auth} from "../../firebase";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 
-function ParkingLotsTab({name,links,spotsLeft}:{name:string,links:string,spotsLeft:number}){
+function ParkingLotsTab({name,currentLat, currentLong, spotsLeft,lat,long, hyperlink}:{name:string,currentLat:number,currentLong:number,spotsLeft:number,lat:number,long:number,hyperlink:string}){
 
+    console.log(lat,long);
     const [loading, setLoading] =  useState(false);
     const[error, setError] =  useState('');
-    const history = useHistory();
+
+    let origin = "origin="
+    if(currentLong && currentLat){
+        origin += currentLat.toString() + "," + currentLong.toString();
+    }
+    const destination = "&destination=" + lat.toString() + "," + long.toString();
 
     const endTimeRef = useRef();
 
@@ -33,9 +39,17 @@ function ParkingLotsTab({name,links,spotsLeft}:{name:string,links:string,spotsLe
                         console.log(res.data);
 
                     });
-                window.open(links,'_blank')
+                if(currentLat && currentLong){
+                    const url = "https://www.google.com/maps/dir/?api=1&" + origin + destination;
+                    window.open(url);
+                }
+                else{
+                    window.open(hyperlink);
+                }
+
                 setTimeout(function () { window.location.reload(); }, 5)
             })
+
 
         }catch{
             setLoading(false);

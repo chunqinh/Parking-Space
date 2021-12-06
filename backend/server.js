@@ -80,6 +80,28 @@ app.post('/user-leaving', function(res,req){
     req.send(res.body);
 });
 
+app.post('/current-user-time-up', function(req,res){
+    const authHeader = req.get('authorization');
+    firebaseAdmin.admin.auth()
+        .verifyIdToken(authHeader)
+        .then((decodeToken)=>{
+            uid = decodeToken.uid;
+            db.user_time_up(req.body,res,uid);
+        })
+    res.send(req.body);
+});
+
+app.post('/user-edit-time', function(req,res){
+    const authHeader = req.get('authorization');
+    firebaseAdmin.admin.auth()
+        .verifyIdToken(authHeader)
+        .then((decodeToken)=>{
+            uid = decodeToken.uid;
+            db.user_parked(req.body,res,uid);
+        })
+    res.send(req.body);
+})
+
 app.get('/get-parking-lots', cors(), db.parking_lots);
 
 app.get('/user-profile-schedule',cors(), db.get_user_schedule);

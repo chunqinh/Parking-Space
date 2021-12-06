@@ -18,7 +18,7 @@
     margin-top: 12px;
 }
 
-.available-parking-lots{
+.available-parking-lots, .car-parked-tabs{
     padding:6px 12px;
     background-color: #EEF5FF;
     margin: 8px 4px;
@@ -84,4 +84,6 @@
 .dashboard-parking-form input{
     margin: 6px 0;
 }
+
+
 

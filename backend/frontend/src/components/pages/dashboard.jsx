@@ -5,6 +5,7 @@ import ParkingLotsTab from "./parking-lots-tab";
 
 import closeButton from "../icons/close_black_24dp.svg";
 import {auth} from "../../firebase";
+import EditTime from "./edit-time";
 
 
 const parking = {
@@ -87,13 +88,30 @@ function UserDashboard(){
     function timer(){
         const now = new Date();
         const now_time = now.toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit', hour12: false})
-        if(userEndTime !== ''){
+        if(userEndTime && userEndTime !== 'TIME UP'){
             const split_userEndTime = userEndTime.split(':')
             const endTime = (parseInt(split_userEndTime[0]) * 60) + (parseInt(split_userEndTime[1]));
             const split_startTime = now_time.split(':')
             const startTime = (parseInt(split_startTime[0]) * 60) + (parseInt(split_startTime[1]));
             if (startTime > endTime){
                 setTimer('TIME UP');
+                auth.currentUser.getIdToken(true).then(function(idToken) {
+                    const data = {
+                        endTime : 'TIME UP'
+                    }
+                    axios.post("https://parking-space-442.herokuapp.com/current-user-time-up",data,{
+                        headers:{
+                            Authorization: idToken
+                        }
+                    })
+                        .then( res => {
+                            console.log(res);
+                            console.log(res.data);
+
+                        });
+                }).catch(function(error) {
+                    // Handle error
+                });
             }
             else{
                 let difference = endTime - startTime;
@@ -117,6 +135,9 @@ function UserDashboard(){
                     return setTimer(timerString);
                 }
             }
+        }
+        else if(userEndTime === 'TIME UP'){
+            return  setTimer('TIME UP');
         }
     }
 
@@ -145,6 +166,7 @@ function UserDashboard(){
             setLoading(false);
             return console.log("Something wasn't right")
         }
+
     }
 
     //Filter Tabs for Parking Lots
@@ -156,22 +178,33 @@ function UserDashboard(){
     const [parkingTab, setParkingTab] = useState(false);
     const [parkingTabName, setParkingTabName] = useState('');
     const [parkingTabLink, setParkingTabLink] = useState('');
+    const [parkingTabLat, setParkingTabLat] = useState(0);
+    const [parkingTabLong, setParkingTabLong] = useState(0);
     const [parkingTabAvailableSpots, setParkingTabAvailableSpots] = useState(0);
 
-    function handleParkingTab(name,link,spotsAvailable){
+    function handleParkingTab(name,link,spotsAvailable,lat,long){
         setParkingTab(!parkingTab);
         setParkingTabName(name);
         setParkingTabLink(link);
         setParkingTabAvailableSpots(spotsAvailable);
+        setParkingTabLat(lat);
+        setParkingTabLong(long)
+    }
+
+    //For Edit Time
+    const [editTime, setEditTime] = useState(false);
+
+    function editUserTime(){
+        setEditTime(!editTime);
     }
 
     //For Nearest Parking Lot
-    const [nearByLotFree, setNearByLotFree] = useState(Object.keys(parking)[0]);
-    const [nearByLotPaid, setNearByLotPaid] = useState(Object.keys(parking)[0]);
-    const [nearByFacultyLot, setNearByFacultyLot] = useState(Object.keys(parking)[0]);
+    const [nearByLotFree, setNearByLotFree] = useState("");
+    const [nearByLotPaid, setNearByLotPaid] = useState("");
+    const [nearByFacultyLot, setNearByFacultyLot] = useState("");
 
 
-    const [times, setTime] = useState(new Date().toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit'}));
+    const [times, setTime] = useState(new Date().toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit', hour12: false}));
 
     const [currentPosition, setCurrentPosition] = useState({});
 
@@ -217,7 +250,6 @@ function UserDashboard(){
             setNearByLotPaid(distance[0][0]);
         }
         else if(faculty){
-            console.log(distance)
             setNearByFacultyLot(distance[0][0]);
         }
         return 0;
@@ -250,8 +282,6 @@ function UserDashboard(){
     useEffect(()=>{
         setInterval(getTime,60000);
     });
-
-
 
     function handleLots(setLots){
         if (setLots === "free"){
@@ -290,15 +320,20 @@ function UserDashboard(){
                 <div style={{textAlign:'center'}}>
                     {
                         userParked ?
-                            <div className="column dashboard">
-                                <h1 className="super-heading time">{carTimer}</h1>
+                            <div className="column dashboard" style={{background:'#EEF5FF', padding:'24px 0', borderRadius:'20px', width:'500px', height:'500px', display:'flex', flexDirection:'column'}}>
+                                <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+                                    <h3>YOUR CAR IS PARKED IN</h3>
+                                    <h3 className="car-parked-tabs" style={{fontSize:'24px', width:'unset'}}>{userParkedLot}</h3>
+                                    <h3> FOR </h3>
+                                </div>
+                                <h1 className="super-heading time" style={{fontSize:'98px',width:'unset'}}>{carTimer}</h1>
                                 <h3 className="heading">{date}</h3>
-                                {/*<a href={"/edit-time"} className="menu-links register" style={{borderRadius:'5px', width:'85px'}}>EDIT TIME</a>*/}
-                                <div>
-                                    CAR IS PARKED IN <h3>{userParkedLot}</h3>
+
+                                <div style={{display:'flex', justifyContent:'center'}}>
                                     <form onSubmit={handleUserLeaving}>
-                                        <button disabled={loading} type={"submit"} className="login-button profile" style={{marginTop:'24px'}} > LEAVING? </button>
+                                        <button disabled={loading} type={"submit"} name={"Leaving"} className="login-button profile" style={{marginTop:'24px', marginRight:'20px'}} > LEAVING? </button>
                                     </form>
+                                    <button disabled={loading} type={"submit"} name={"Updating"} onClick={() => editUserTime()} className="login-button profile" style={{background:'#242324',marginTop:'24px'}}>EDIT TIME</button>
                                 </div>
                             </div>
                             :
@@ -322,7 +357,7 @@ function UserDashboard(){
                                                         if(data['paid'] && data['available'] > 0){
                                                             return(
                                                                 <div className="available-parking-lots">
-                                                                    <p onClick={() => handleParkingTab(data['name'],data['link'],data['available'])}>
+                                                                    <p onClick={() => handleParkingTab(data['name'],data['link'],data['available'],data['lat'],data['long'])}>
                                                                         {data['name']}
                                                                     </p>
                                                                 </div>
@@ -339,7 +374,7 @@ function UserDashboard(){
                                                         if(data['free'] && data['available'] > 0){
                                                             return(
                                                                 <div className="available-parking-lots">
-                                                                    <p onClick={() => handleParkingTab(data['name'],data['link'],data['available'])}>
+                                                                    <p onClick={() => handleParkingTab(data['name'],data['link'],data['available'],data['lat'],data['long'])}>
                                                                         {data['name']}
                                                                     </p>
                                                                 </div>
@@ -356,7 +391,7 @@ function UserDashboard(){
                                                         if(data['faculty'] && data['available'] > 0){
                                                             return(
                                                                 <div className="available-parking-lots">
-                                                                    <p onClick={() => handleParkingTab(data['name'],data['link'],data['available'])}>
+                                                                    <p onClick={() => handleParkingTab(data['name'],data['link'],data['available'],data['lat'],data['long'])}>
                                                                         {data['name']}
                                                                     </p>
                                                                 </div>
@@ -376,17 +411,11 @@ function UserDashboard(){
                 </div>
                 <div>
                     {
-                        free && !paid && !faculty ?
-                            <GoogleMaps frees={true} availables={true} paids={false} faculty={false} nearbyFree={nearByLotFree} nearbyPaid={""} nearbyFaculty={""} />
+                        userParked ?
+                            <GoogleMaps parkingLotsMap={parkingLots} frees={false} paids={false} faculty={false} nearbyFree={""} nearbyPaid={""} nearbyFaculty={""} userParkedLotName={userParkedLot}/>
                         :
-                        paid && !free && !faculty?
-                            <GoogleMaps frees={false} availables={true} paids={true} faculty={false} nearbyFree={""} nearbyPaid={nearByLotPaid} nearbyFaculty={""} />
-                        :
-                        faculty && !free && !paid ?
-                            <GoogleMaps frees={false} availables={false} paids={false} faculty={true} nearbyFree={""} nearbyPaid={""} nearbyFaculty={nearByFacultyLot} />
-                        :
-                        !faculty &&
-                            <GoogleMaps frees={true} availables={true} paids={true} faculty={false} nearbyFree={""} nearbyPaid={""} nearbyFaculty={""} />
+
+                            <GoogleMaps parkingLotsMap={parkingLots} frees={free} paids={paid} faculty={faculty} nearbyFree={nearByLotFree} nearbyPaid={nearByLotPaid} nearbyFaculty={nearByFacultyLot} userParkedLotName={""}/>
                     }
 
                 </div>
@@ -396,12 +425,27 @@ function UserDashboard(){
                         <div className="dashboard-parking-box">
                             <div style={{textAlign:'right', margin:'24px', cursor:'pointer'}}>
                                 <img src={closeButton} onClick={() => setParkingTab(!parkingTab)} alt={"Close Icon"}/>
-                                <ParkingLotsTab name={parkingTabName} link={parkingTabLink} spotsLeft={parkingTabAvailableSpots}/>
+                                <ParkingLotsTab name={parkingTabName} currentLat={currentPosition.lat} currentLong={currentPosition.lng} spotsLeft={parkingTabAvailableSpots} lat={parkingTabLat} long={parkingTabLong} hyperlink={parkingTabLink}/>
                             </div>
                         </div>
                     </div>)
                 :
                 <></>
+            }
+            {
+                editTime ?
+                    (
+                        <div className="dashboard-parking-background">
+                            <div className="dashboard-parking-box">
+                                <div style={{textAlign:'right', margin:'24px', cursor:'pointer'}}>
+                                    <img src={closeButton} onClick={() => setEditTime(!editTime)} alt={"Close Icon"}/>
+                                    <EditTime name={userParkedLot} />
+                                </div>
+                            </div>
+                        </div>
+                    )
+                :
+                    <></>
             }
         </div>
     )

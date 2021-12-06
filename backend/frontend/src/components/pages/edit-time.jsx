@@ -1,92 +1,60 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
+import {auth} from "../../firebase";
+import axios from "axios";
 
-function EditTime(){
+function EditTime({name}:{name:string}){
 
-    let [minuteOnes, setMinuteOnes] = useState(9);
-    let [minuteTens, setMinuteTens] = useState(5);
-    let [hoursOnes, setHourOnes] = useState(2);
-    let [hoursTens, setHourTens] = useState(1);
+    const [loading, setLoading] =  useState(false);
+    const[error, setError] =  useState('');
 
-   const addMin = () => {
-        if (minuteOnes < 9){
-            setMinuteOnes(minuteOnes += 1);
-        }
-        else if(minuteOnes === 9 && minuteTens !== 5){
-            setMinuteOnes(minuteOnes = 0);
-            setMinuteTens(minuteTens += 1);
-        }
-        else if(minuteOnes === 9 && minuteTens === 5){
-            setMinuteOnes(minuteOnes = 0);
-            setMinuteTens(minuteTens = 0);
-            addHours();
-        }
-    }
+    const endTimeRef = useRef();
 
-    const addHours = () => {
-        if (hoursOnes === 2 && hoursTens === 1){
-            setHourOnes(hoursOnes=1);
-            setHourTens(hoursTens=0);
-        }
-        else if (hoursOnes < 9){
-            setHourOnes(hoursOnes+=1);
-        }
-        else if(hoursOnes === 9){
-            setHourOnes(hoursOnes=0);
-            setHourTens(hoursTens+=1);
-        }
-    }
+    function handleSubmit(e) {
+        e.preventDefault()
+        try{
+            setLoading(true);
+            const today = new Date();
+            const currentTime = today.toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit', hour12: false})
+            const parkingData = {
+                parkingLotName : name,
+                startTime: currentTime,
+                endTime : endTimeRef.current.value
+            }
+            auth.currentUser.getIdToken(true).then((idToken)=>{
+                axios.post("https://parking-space-442.herokuapp.com/user-edit-time",parkingData,{
+                    headers:{
+                        Authorization: idToken
+                    }
+                })
+                    .then( res => {
+                        console.log(res);
+                        console.log(res.data);
 
-    const subtractHours = () => {
-       if( hoursOnes === 0 && hoursTens === 1){
-           setHourOnes(hoursOnes = 9);
-           setHourTens(hoursTens = 0);
-       }
-       else if(hoursOnes > 0){
-           setHourOnes(hoursOnes-=1);
-       }
-    }
+                    });
+                // console.log(links);
+                // window.open(links,'_blank')
+                setTimeout(function () { window.location.reload(); }, 5)
+            })
 
-    const subtractMinutes = () => {
-       if( minuteOnes === 0 && minuteTens !== 0){
-           setMinuteOnes(minuteOnes = 9);
-           setMinuteTens( minuteTens -= 1);
-       }
-       else if(minuteOnes >= 1){
-           setMinuteOnes(minuteOnes-=1);
-       }
+        }catch{
+            setLoading(false);
+            return setError("Something wasn't right")
+        }
     }
 
     return(
-        <div className="single-height-pages">
-            <div className="edit-time">
-                <div style={{marginTop:'50px', textAlign:'center'}}>
-                    <h1 className="sub-heading">EDIT TIME</h1>
-                </div>
-                <div className="row between">
-                    <button className="edit-time-buttons"> ADD 30 MINUTES </button>
-                    <button className="edit-time-buttons"> ADD 1 HOUR </button>
-                    <button className="edit-time-buttons"> ADD 2 HOURS </button>
-                </div>
-                <div className="row" style={{marginTop:'24px', width:'800px', alignItems:'center'}}>
-                    <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
-                        <button className="edit-time-buttons add" onClick={addHours}> + </button>
-                        <h1 className="super-heading time">{hoursTens} {hoursOnes} </h1>
-                        <button className="edit-time-buttons add" onClick={subtractHours}> - </button>
-                    </div>
-                    <div>
-                        <h1 className="super-heading time" style={{transform:'translateY(-30px)'}}>:</h1>
-                    </div>
-                    <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
-                        <button className="edit-time-buttons add" onClick={addMin}> + </button>
-                        <h1 className="super-heading time">{minuteTens} {minuteOnes}</h1>
-                        <button className="edit-time-buttons add" onClick={subtractMinutes}> - </button>
-                    </div>
+        <form className="edit-schedule-form" onSubmit={handleSubmit}>
+            <div>
+                <h1 className="labels" style={{padding:'24px'}}>{name}</h1>
+            </div>
+            <div>
+                <h6 className="labels profile" style={{paddingTop:'24px'}}>ADDED TIME:</h6>
+                <div>
+                    <input type={"time"} ref={endTimeRef} max={"23:59"} min={new Date().toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: false})}/>
                 </div>
             </div>
-
-        </div>
-          
+            <button disabled={loading} type={"submit"} className="login-button profile" style={{marginTop:'24px'}} > ADD TIME </button>
+        </form>
     )
-
 }
 export default EditTime;
