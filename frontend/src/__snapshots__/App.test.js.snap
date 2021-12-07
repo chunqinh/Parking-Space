@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home Page test 1`] = `<index />`;
+exports[`Home Page test 1`] = `<index1 />`;
 
 exports[`dashboard test 1`] = `<dashboard />`;
