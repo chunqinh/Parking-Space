@@ -44,7 +44,7 @@ function emailReminder(){
                     if(currentTime > endTime){
                         sendEmail(emailID,parkingLot,startTime, "TIME UP")
                     }
-                    else if( (endTime - currentTime) <= 15){
+                    else if( (endTime - currentTime) < 15){
                         sendEmail(emailID,parkingLot,startTime, "LESS THAN 15 MIN LEFT")
                     }
                 }
