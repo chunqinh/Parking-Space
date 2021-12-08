@@ -62,7 +62,7 @@ function sendEmail(emailID, parkingLot, startTime,body){
 
     if(body==="TIME UP"){
         subjectOfEmail = "Park App Email Reminder : TIME UP"
-        bodyOfEmail = "Hey There, \r\nYour car parked in " + parkingLot + " since " + startTime + " has ran out of time. Please extend the estimated departure by visiting the ParkApp. If you have already left and are being notified about this spot, please visit the app to let us know you left by clicking on the Leaving? button. \r\nHave a great day ahead. \r\n\r\nBest, \r\nParkApp Team"
+        bodyOfEmail = "Hey There, \r\nYour car parked in " + parkingLot + " since " + startTime + " has ran out of time or will be running out of time (less than 15 minutes). Please extend the estimated departure by visiting the ParkApp. If you have already left and are being notified about this spot, please visit the app to let us know you left by clicking on the Leaving? button. \r\n\r\nHave a great day ahead. \r\n\r\nBest, \r\nParkApp Team"
     }
     else{
         subjectOfEmail = "Park App Email Reminder : Your Time Is Almost Up"
