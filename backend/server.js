@@ -23,31 +23,34 @@ setInterval(emailReminder,60000);
 function emailReminder(){
     const db_rows = db.user_timer_checker();
     db_rows.then(function(parked_users){
-        for(const user of parked_users){
-            const startTime = user['starttimer'];
-            const endTime = user['endtimer'];
-            const emailID = user['email'];
-            const parkingLot = user['parkinglot']
+        if (parked_users){
+            for(const user of parked_users){
+                const startTime = user['starttimer'];
+                const endTime = user['endtimer'];
+                const emailID = user['email'];
+                const parkingLot = user['parkinglot']
 
-            if(endTime === 'TIME UP'){
-                sendEmail(emailID,parkingLot,startTime, "TIME UP")
-            }
-            else{
-                const now = new Date();
-                const now_time = now.toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit', hour12: false})
-                const split_userEndTime = endTime.split(':')
-                const endTime = (parseInt(split_userEndTime[0]) * 60) + (parseInt(split_userEndTime[1]));
-                const split_startTime = now_time.split(':')
-                const currentTime = (parseInt(split_startTime[0]) * 60) + (parseInt(split_startTime[1]));
-
-                if(currentTime > endTime){
+                if(endTime === 'TIME UP'){
                     sendEmail(emailID,parkingLot,startTime, "TIME UP")
                 }
-                else if( (endTime - currentTime) <= 15){
-                    sendEmail(emailID,parkingLot,startTime, "LESS THAN 15 MIN LEFT")
+                else{
+                    const now = new Date();
+                    const now_time = now.toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit', hour12: false})
+                    const split_userEndTime = endTime.split(':')
+                    const endTime = (parseInt(split_userEndTime[0]) * 60) + (parseInt(split_userEndTime[1]));
+                    const split_startTime = now_time.split(':')
+                    const currentTime = (parseInt(split_startTime[0]) * 60) + (parseInt(split_startTime[1]));
+
+                    if(currentTime > endTime){
+                        sendEmail(emailID,parkingLot,startTime, "TIME UP")
+                    }
+                    else if( (endTime - currentTime) <= 15){
+                        sendEmail(emailID,parkingLot,startTime, "LESS THAN 15 MIN LEFT")
+                    }
                 }
             }
         }
+
     })
 
 }
