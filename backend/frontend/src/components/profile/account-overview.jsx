@@ -23,7 +23,7 @@ function AccountDetails(){
     function getUserData(){
         auth.currentUser.getIdToken(true).then(function(idToken) {
             // Send token to your backend via HTTPS
-            axios.get("http://localhost:8081/current-user-details", {
+            axios.get("https://parking-space-442.herokuapp.com/current-user-details", {
                 headers:{
                     Authorization : idToken
                 }})
@@ -55,7 +55,7 @@ function AccountDetails(){
                 phoneNumber : phonenumberRef.current.value === '' ? phone : phonenumberRef.current.value
             }
             auth.currentUser.getIdToken(true).then((idToken)=>{
-                axios.post("http://localhost:8081/personal-info-update",userData,{
+                axios.post("https://parking-space-442.herokuapp.com/personal-info-update",userData,{
                     headers:{
                         Authorization: idToken
                     }

@@ -29,7 +29,7 @@ function ParkingLotsTab({name,currentLat, currentLong, spotsLeft,lat,long, hyper
                 endTime : endTimeRef.current.value
             }
             auth.currentUser.getIdToken(true).then((idToken)=>{
-                axios.post("http://localhost:8081/user-parked",parkingData,{
+                axios.post("https://parking-space-442.herokuapp.com/user-parked",parkingData,{
                     headers:{
                         Authorization: idToken
                     }

@@ -25,7 +25,7 @@ function PersonalInfoForm(){
                 phoneNumber : phoneNumberRef.current.value,
             }
             auth.currentUser.getIdToken(true).then((idToken)=>{
-                axios.post("http://localhost:8081/personal-info",userData,{
+                axios.post("https://parking-space-442.herokuapp.com/personal-info",userData,{
                     headers:{
                         Authorization: idToken
                     }

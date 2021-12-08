@@ -21,7 +21,7 @@ function EditTime({name}:{name:string}){
                 endTime : endTimeRef.current.value
             }
             auth.currentUser.getIdToken(true).then((idToken)=>{
-                axios.post("http://localhost:8081/user-edit-time",parkingData,{
+                axios.post("https://parking-space-442.herokuapp.com/user-edit-time",parkingData,{
                     headers:{
                         Authorization: idToken
                     }

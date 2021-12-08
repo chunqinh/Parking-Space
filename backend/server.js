@@ -83,7 +83,7 @@ function sendEmail(emailID, parkingLot, startTime,body){
 }
 
 app.use(cors({
-    origin:"http://localhost:8081/",
+    origin:"https://parking-space-442.herokuapp.com/",
     // origin:"http//localhost:5000/",
     credentials: true,
 }));
