@@ -1,3 +1,4 @@
+const json = require("body-parser/lib/types/json");
 console.log(process.env.REACT_APP_DB_HOST);
 const database_app = require('pg').Pool
 const database_cred = new database_app({
@@ -99,9 +100,33 @@ const user_leaving_parking_spot = (data,cb,uid) => {
         }
     })
 }
+//
+// const user_timer_checker = () =>{
+//     database_cred.get('SELECT * FROM users WHERE parked = true', function(error,results){
+//         if(error){
+//             throw error;
+//         }
+//         return results.rows
+//     })
+// }
+
+async function emailReminder(){
+    try{
+        const res = await database_cred.query('SELECT * FROM users WHERE parked = true');
+        return res.rows
+    }
+    catch (error){
+        return error
+    }
+}
+
+const user_timer_checker = async () =>{
+    return await emailReminder();
+}
 
 module.exports = {
     parking_lots,
+    user_timer_checker,
     user_time_up,
     update_parking_lot,
     update_parking_lot_left,

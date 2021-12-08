@@ -49,7 +49,7 @@ function UserDashboard(){
 
         auth.currentUser.getIdToken(true).then(function(idToken) {
             // Send token to your backend via HTTPS
-            axios.get("https://parking-space-442.herokuapp.com/current-user-details", {
+            axios.get("http://localhost:8081/current-user-details", {
                 headers:{
                     Authorization : idToken
                 }})
@@ -76,7 +76,7 @@ function UserDashboard(){
     }, [])
 
     function getParkingLots(){
-        axios.get('https://parking-space-442.herokuapp.com/get-parking-lots').then(parking=>parking.data).then(parkinglots =>{
+        axios.get('http://localhost:8081/get-parking-lots').then(parking=>parking.data).then(parkinglots =>{
             setParkingLots(parkinglots);
         })
     }
@@ -99,7 +99,7 @@ function UserDashboard(){
                     const data = {
                         endTime : 'TIME UP'
                     }
-                    axios.post("https://parking-space-442.herokuapp.com/current-user-time-up",data,{
+                    axios.post("http://localhost:8081/current-user-time-up",data,{
                         headers:{
                             Authorization: idToken
                         }
@@ -149,7 +149,7 @@ function UserDashboard(){
                 parkingLotName : userParkedLot,
             }
             auth.currentUser.getIdToken(true).then((idToken)=>{
-                axios.post("https://parking-space-442.herokuapp.com/user-leaving",parkingData,{
+                axios.post("http://localhost:8081/user-leaving",parkingData,{
                     headers:{
                         Authorization: idToken
                     }
