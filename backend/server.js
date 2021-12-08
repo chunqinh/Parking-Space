@@ -37,14 +37,14 @@ function emailReminder(){
                     const now = new Date();
                     const now_time = now.toLocaleTimeString('en-US',{hour:'2-digit', minute:'2-digit', hour12: false})
                     const split_userEndTime = user['endtimer'].split(':')
-                    const endTime = (parseInt(split_userEndTime[0]) * 60) + (parseInt(split_userEndTime[1]));
+                    const endTimer = (parseInt(split_userEndTime[0]) * 60) + (parseInt(split_userEndTime[1]));
                     const split_startTime = now_time.split(':')
                     const currentTime = (parseInt(split_startTime[0]) * 60) + (parseInt(split_startTime[1]));
 
-                    if(currentTime > endTime){
+                    if(currentTime > endTimer){
                         sendEmail(emailID,parkingLot,startTime, "TIME UP")
                     }
-                    else if( (endTime - currentTime) < 15){
+                    else if( (endTimer - currentTime) < 15){
                         sendEmail(emailID,parkingLot,startTime, "LESS THAN 15 MIN LEFT")
                     }
                 }
